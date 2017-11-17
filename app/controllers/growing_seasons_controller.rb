@@ -1,0 +1,2 @@
+class GrowingSeasonsController < ApplicationController
+end
