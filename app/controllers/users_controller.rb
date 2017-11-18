@@ -8,8 +8,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    #add if logged in logic
-    @user = User.create(user_params)
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
+    end
   end
 
   def show
