@@ -9,7 +9,15 @@
   </head>
 
   <body>
-    <h1>New Orleans Plant Library</h1>
+
+    <% if current_user %>
+      <h1><%= link_to 'New Orleans Plant Library', user_path(@user) %></h1>
+      Hello <%= @user.name %> | <%= link_to 'Logout', '/logout' %>
+      <% else %>
+      <h1><%= link_to 'New Orleans Plant Library', '/' %></h1>
+    <% end %>
+
     <%= yield %>
+
   </body>
 </html>

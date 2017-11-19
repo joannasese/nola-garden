@@ -1,7 +1,10 @@
-Hello <%= @user.name %>
+<!-- Hello <%= @user.name %> -->
 
-<!-- <%= button_to 'Logout', '/logout' %> -->
-<!-- <%= link_to 'Logout', logout_path %> -->
-<%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
+<p>Search:</p>
+
+<p>Favorites:</p>
+
+<!-- <%= button_to 'Logout', '/logout' %> --> <!-- is this the same as below? -->
+<!-- <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
   <input type=submit value='logout'>
-<% end %>
+<% end %> -->
