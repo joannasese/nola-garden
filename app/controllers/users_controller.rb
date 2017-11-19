@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login
+  skip_before_action :require_login, except: [:show]
 
   def index
   end
@@ -18,7 +20,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    if logged_in?
+      @user = User.find_by(id: params[:id])
+    else
+      redirect_to '/login'
+    end
   end
 
   private
@@ -26,4 +32,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
 end
