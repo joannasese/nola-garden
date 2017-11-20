@@ -7,12 +7,10 @@ class PlantsController < ApplicationController
 
   def create
     @plant = Plant.new(plant_params)
-    @plant.user_id = current_user.id
-    binding.pry
-    # @plant.growing_season_id = @plant.growing_season.id
+    # binding.pry
 
     if @plant.save
-      redirect_to user_path(current_user)
+      redirect_to plant_path(@plant)
     end
 
   end
@@ -38,7 +36,7 @@ class PlantsController < ApplicationController
       :light,
       :lifecycle,
       :spacing,
-      growing_season_id:[]
+      growing_season_ids:[]
     )
   end
 end
