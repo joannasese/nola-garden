@@ -5,7 +5,9 @@
 <p><%= link_to 'Submit a plant', '../plants/new' %></p>
 
 <p>Recent entries:</p>
+
 <% @user.plants.each do |plant| %> <!--limit to 5 and iterate backwards-->
+
   <%= plant.common_name %><br> - make into link
 <% end %>
 

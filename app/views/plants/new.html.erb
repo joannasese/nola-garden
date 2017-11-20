@@ -24,7 +24,7 @@
   <%= f.label :spacing %>:
   <%= f.text_field :spacing %><br>
   <%= f.label 'Sowing season:' %>
-  <%= f.collection_check_boxes :growing_season_ids, GrowingSeason.all, :id, :season %><br>
+  <%= f.collection_check_boxes :season_ids, Season.all, :id, :season %><br>
 
   <%= f.submit %>
 

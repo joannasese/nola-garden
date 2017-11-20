@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20171120163107) do
     t.string "lifecycle"
     t.integer "spacing"
     t.integer "days_to_maturity"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

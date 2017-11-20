@@ -36,7 +36,7 @@ class PlantsController < ApplicationController
       :light,
       :lifecycle,
       :spacing,
-      growing_season_ids:[]
+      season_ids:[]
     )
   end
 end

@@ -9,6 +9,7 @@ class CreatePlants < ActiveRecord::Migration[5.1]
       t.string :lifecycle
       t.integer :spacing
       t.integer :days_to_maturity
+      t.integer :user_id
 
       t.timestamps
     end
