@@ -1,4 +1,4 @@
 class GrowingSeason < ApplicationRecord
-  has_many :plants
-  has_many :users, through: :plants
+  belongs_to :user
+  belongs_to :plants
 end

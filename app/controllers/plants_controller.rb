@@ -8,15 +8,13 @@ class PlantsController < ApplicationController
   def create
     @plant = Plant.new(plant_params)
     @plant.user_id = current_user.id
+    binding.pry
     # @plant.growing_season_id = @plant.growing_season.id
 
     if @plant.save
-
       redirect_to user_path(current_user)
-    else
-      flash[:alert] = "Fill out completely"
-      redirect_to '/plants/new'
     end
+
   end
 
   def edit
