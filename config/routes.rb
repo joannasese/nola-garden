@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   post '/logout', to: 'sessions#destroy'
 
+  post '/plants', to: 'plants#create'
+
+
+
 end

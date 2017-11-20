@@ -3,10 +3,17 @@ class UsersController < ApplicationController
   skip_before_action :require_login, except: [:show]
 
   def index
+    if current_user
+      redirect_to user_path(current_user)
+    end
   end
 
   def new
-    @user = User.new
+    if current_user
+      redirect_to user_path(current_user)
+    else
+      @user = User.new
+    end
   end
 
   def create
@@ -30,7 +37,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, plants_attributes: [:common_name])
   end
 
 end

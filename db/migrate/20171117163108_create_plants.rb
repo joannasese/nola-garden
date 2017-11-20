@@ -8,6 +8,7 @@ class CreatePlants < ActiveRecord::Migration[5.1]
       t.string :light
       t.string :lifecycle
       t.integer :spacing
+      t.integer :days_to_maturity
       t.integer :user_id
       t.integer :growing_season_id
 
