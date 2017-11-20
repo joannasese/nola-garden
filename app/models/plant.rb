@@ -13,4 +13,6 @@ class Plant < ApplicationRecord
   validates :spacing, presence: true
   validates :days_to_maturity, presence: true
   validates :seasons, presence: true
+
+  # scope :dry_clean_only, -> { joins(:washing_instructions).where('washing_instructions.dry_clean_only = ?', true) }
 end
