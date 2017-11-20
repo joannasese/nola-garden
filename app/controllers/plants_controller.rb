@@ -7,11 +7,13 @@ class PlantsController < ApplicationController
 
   def create
     @plant = Plant.new(plant_params)
+    @plant.user_id = current_user.id
+    @plant.save
     # binding.pry
 
-    if @plant.save
+    # if @plant.save
       redirect_to plant_path(@plant)
-    end
+    # end
 
   end
 
