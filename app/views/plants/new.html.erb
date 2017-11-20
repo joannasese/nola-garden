@@ -2,6 +2,9 @@
 <h2>Submit a Plant</h2>
 
 <%= form_for @plant do |f| %>
+  <!-- <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :growing_season_id %> -->
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.label :common_name %>:
   <%= f.text_field :common_name %><br>
   <%= f.label :latin_name %>:
@@ -16,12 +19,9 @@
   <%= f.select :lifecycle, options_for_select([['Select one', ''], 'Annual', 'Perennial']) %><br>
   <%= f.label :spacing %>:
   <%= f.text_field :spacing %><br>
-  <!-- <%= f.label 'Time to sow seeds:' %>
-  <%= f.collection_check_boxes :growing_season_id, GrowingSeason.all, :id, :sowing %><br> -->
-  <%= fields_for :growing_season, @plant.growing_season do |gs_fields| %>
-    Sowing season: <%= gs_fields.check_box :fall %>Fall <%= gs_fields.check_box :winter %>Winter
-    <%= gs_fields.check_box :spring %>Spring <%= gs_fields.check_box :summer %>Summer<br>
-  <% end %>
+  <%= f.label 'Sowing season:' %>
+  <%= f.collection_check_boxes :growing_season_id, GrowingSeason.all, :id, :season %><br>
+
   <%= f.submit %>
 
 <% end %>

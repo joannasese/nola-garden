@@ -6,7 +6,7 @@
 
 <p>Recent entries:</p>
 <% @user.plants.each do |plant| %> <!--limit to 5 and iterate backwards-->
-  <%= plant.name %><br> - make into link
+  <%= plant.common_name %><br> - make into link
 <% end %>
 
 <p>Favorites:</p>
