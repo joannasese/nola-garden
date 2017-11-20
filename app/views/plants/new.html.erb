@@ -1,26 +1,36 @@
 <!-- For admin only, implement later -->
+<%= stylesheet_link_tag "application" %>
 <h2>Submit a Plant</h2>
 
+<% if @plant.errors.any? %>
+  <div class="error_explanation">
+    <%= pluralize(@plant.errors.count, "error") %> prohibited this plant from being submitted:
+    <ul>
+    <% @plant.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @plant do |f| %>
-  <%= f.label :common_name %>:
+  <p>Common name:<br>
   <%= f.text_field :common_name %><br>
-  <%= f.label :latin_name %>:
+  <p>Latin name:<br>
   <%= f.text_field :latin_name %><br>
-  <%= f.label :variety %>:
+  <p>Variety:<br>
   <%= f.text_field :variety %><br>
-  <%= f.label :height %>:
+  <p>Height (inches):<br>
   <%= f.text_field :height %><br>
-  <%= f.label :light %>:
+  <p>Light requirements:<br>
   <%= f.select :light, options_for_select([['Select one', ''], 'Full sun', 'Part sun', 'Shade']) %><br>
-  <%= f.label :lifecycle %>:
+  <p>Lifecycle:<br>
   <%= f.select :lifecycle, options_for_select([['Select one', ''], 'Annual', 'Perennial']) %><br>
-  <%= f.label :spacing %>:
+  <p>Spacing (inches):<br>
   <%= f.text_field :spacing %><br>
-  <%= f.label :days_to_maturity %>:
-  <%= f.text_field :days_to_maturity %><br>
-  <%= f.label 'Sowing season:' %>
+  <p>Sowing season:<br>
   <%= f.collection_check_boxes :season_ids, Season.all, :id, :season %><br>
-
+  <p>Days to maturity:<br>
+  <%= f.text_field :days_to_maturity %><br>
   <%= f.submit %>
-
 <% end %>

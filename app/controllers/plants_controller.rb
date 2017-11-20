@@ -18,12 +18,7 @@ class PlantsController < ApplicationController
     if @plant.save
       redirect_to plant_path(@plant)
     else
-      if @plant.errors.any?
-        @plant.errors.full_messages.each do |msg|
-          puts msg
-        end
-        redirect_to '/plants/new'
-      end
+      render :new
     end
 
   end
