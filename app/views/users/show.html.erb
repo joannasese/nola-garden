@@ -1,6 +1,10 @@
 <!-- Hello <%= @user.name %> -->
 
 <p>Search:</p>
+<% form_tag plants_path, method: 'get' do%>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
 
 <p><%= link_to 'Submit a plant', '../plants/new' %></p>
 
