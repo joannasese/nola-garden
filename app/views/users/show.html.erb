@@ -1,20 +1,14 @@
-<!-- Hello <%= @user.name %> -->
-
 <p>Search:</p>
-
 
 <p><%= link_to 'Submit a plant', '../plants/new' %></p>
 
-<p>Recent entries:<br>
-<% @user.plants.each do |plant| %> <!--limit to 5 and iterate backwards-->
-  <%= link_to "#{plant.common_name}", plant_path(plant) %><br>
-<% end %>
+<p><%= link_to 'All plants', plants_path %><br>
+
+
+
+
+
 
 <p>Favorites:</p>
 
-<p><%= link_to 'All plants', plants_path %></p>
-
-<!-- <%= button_to 'Logout', '/logout' %> --> <!-- is this the same as below? -->
-<!-- <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
-  <input type=submit value='logout'>
-<% end %> -->
+<!-- <p><%= link_to 'All plants', plants_path %></p> -->

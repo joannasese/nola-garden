@@ -1,4 +1,5 @@
 class Plant < ApplicationRecord
+
   has_many :plant_seasons
   has_many :seasons, through: :plant_seasons
 
@@ -14,5 +15,7 @@ class Plant < ApplicationRecord
   validates :days_to_maturity, presence: true
   validates :seasons, presence: true
 
-  scope :winter, -> { joins(:seasons).where('seasons.season.name = "Winter"', true) }
+  def self.by_plant(plant_id)
+    where(plant: plant_id)
+  end
 end

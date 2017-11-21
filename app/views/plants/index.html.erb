@@ -1,4 +1,10 @@
-<p>
-  <% @plants.each do |plant| %>
-  <%= plant.common_name %><br>
-<% end %>
+<h3>Filter plants:</h3>
+  <%= form_tag("/plants", method: "get") do %>
+    <%= select_tag "plant", options_from_collection_for_select(@plants, "id", "common_name"), include_blank: true %>
+    <%= submit_tag "Filter" %>
+  <% end %>
+
+ <p>All plants</p>
+ <% @plants.each do |plant| %> <!--limit to 5 and iterate backwards-->
+   <%= link_to "#{plant.common_name}, #{plant.variety}", plant_path(plant) %><br>
+ <% end %>
