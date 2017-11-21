@@ -3,12 +3,33 @@ class PlantsController < ApplicationController
 
   def index
     @seasons = Season.all
+
     if !params[:season].blank?
-      @plants = Plant.where(seasons: params[:season])
+
+      # @plants = Plant.where(seasons: params[:season])
+      # @plants = Plants where season is season chosen from drop down
       # @plants = Plant.by_season(params[:season])
-      # binding.pry
+
+      # @plants = Plant.where("common_name = ?", "Zinnia")
+      # @plants = Plant.joins(:plant_seasons).where("plant_seasons.season_id", params[:season])
+      @plants = Plant.joins(:plant_seasons).where("season_id = ?", params[:season])
+
     else
       @plants = Plant.all
+      # User.joins(:posts).where("posts.created_at < ?", Time.now)
+      # User.where(["name = ? and email = ?", "Joe", "joe@example.com"])
+      # Client.where("orders_count = '2'")
+
+      # @plants.each do |plant|
+      #   if plant.season_ids.include?(params[:season].to_i)
+      #     @plants = Array.new
+      #     @plants << plant
+      #     link_to "#{plant.common_name}, #{plant.variety}", plant_path(plant)
+      #     puts "Success"
+      #   else
+      #     puts "Sorry, no results."
+      #   end
+      # end
     end
   end
 

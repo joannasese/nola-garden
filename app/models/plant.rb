@@ -1,5 +1,4 @@
 class Plant < ApplicationRecord
-
   has_many :plant_seasons
   has_many :seasons, through: :plant_seasons
 
@@ -15,7 +14,8 @@ class Plant < ApplicationRecord
   validates :days_to_maturity, presence: true
   validates :seasons, presence: true
 
-  def self.by_season(season_id)
-    where(season: season_id)
-  end
+  # def self.by_season(season_id)
+  #   where(seasons: season_id)
+  # end
+
 end
