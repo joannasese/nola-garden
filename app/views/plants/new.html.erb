@@ -4,33 +4,76 @@
 
 <% if @plant.errors.any? %>
   <div class="error_explanation">
-    <%= pluralize(@plant.errors.count, "error") %> prohibited this plant from being submitted:
-    <ul>
+    <%= pluralize(@plant.errors.count, "error") %> prohibited this plant from being submitted:<br>
     <% @plant.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+      <%= msg %><br>
     <% end %>
-    </ul>
   </div>
 <% end %>
 
 <%= form_for @plant do |f| %>
-  <p>Common name:<br>
-  <%= f.text_field :common_name %><br>
-  <p>Latin name:<br>
-  <%= f.text_field :latin_name %><br>
-  <p>Variety:<br>
-  <%= f.text_field :variety %><br>
-  <p>Height (inches):<br>
-  <%= f.text_field :height %><br>
-  <p>Light requirements:<br>
-  <%= f.select :light, options_for_select([['Select one', ''], 'Full sun', 'Part sun', 'Shade']) %><br>
-  <p>Lifecycle:<br>
-  <%= f.select :lifecycle, options_for_select([['Select one', ''], 'Annual', 'Perennial']) %><br>
-  <p>Spacing (inches):<br>
-  <%= f.text_field :spacing %><br>
-  <p>Sowing season:<br>
-  <%= f.collection_check_boxes :season_ids, Season.all, :id, :season %><br>
-  <p>Days to maturity:<br>
-  <%= f.text_field :days_to_maturity %><br>
-  <%= f.submit %>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <p>Common name:<br>
+      <%= f.text_field :common_name, class: "form-control" %><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <p>Latin name:<br>
+      <%= f.text_field :latin_name, class: "form-control" %><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <p>Variety:<br>
+      <%= f.text_field :variety, class: "form-control" %><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <p>Height:<br>
+      <%= f.text_field :height, class: "form-control" %><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <p>Light requirements:<br>
+        <%= f.select :light, options_for_select([['Select one', ''], 'Full sun', 'Part sun', 'Shade']), class: "form-control" %><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <p>Lifecycle:<br>
+        <%= f.select :lifecycle, options_for_select([['Select one', ''], 'Annual', 'Perennial']), class: "form-control" %><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <p>Spacing (inches):<br>
+        <%= f.text_field :spacing, class: "form-control" %><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <p>Sowing season:<br>
+        <%= f.collection_check_boxes :season_ids, Season.all, :id, :season, class: "form-control" %><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <p>Days to maturity:<br>
+        <%= f.text_field :days_to_maturity, class: "form-control" %><br>
+    </div>
+  </div>
+
+  <%= f.submit class: 'btn btn-success' %>
 <% end %>
