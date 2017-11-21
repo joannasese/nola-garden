@@ -14,5 +14,5 @@ class Plant < ApplicationRecord
   validates :days_to_maturity, presence: true
   validates :seasons, presence: true
 
-  # scope :dry_clean_only, -> { joins(:washing_instructions).where('washing_instructions.dry_clean_only = ?', true) }
+  scope :winter, -> { joins(:seasons).where('seasons.season.name = "Winter"', true) }
 end
