@@ -15,7 +15,7 @@ class Plant < ApplicationRecord
   validates :days_to_maturity, presence: true
   validates :seasons, presence: true
 
-  def self.by_plant(plant_id)
-    where(plant: plant_id)
+  def self.by_season(season_id)
+    where(season: season_id)
   end
 end

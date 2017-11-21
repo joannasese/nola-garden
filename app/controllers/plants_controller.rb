@@ -1,14 +1,15 @@
 class PlantsController < ApplicationController
   before_action :require_login
-  helper_method :params
 
   def index
-    @plants = Plant.all
-    # if !params[:plant].blank?
-    #   @plants = Plant.by_plant(params[:plant])
-    # else
-    #   @plants = Plant.all
-    # end
+    @seasons = Season.all
+    if !params[:season].blank?
+      @plants = Plant.where(seasons: params[:season])
+      # @plants = Plant.by_season(params[:season])
+      # binding.pry
+    else
+      @plants = Plant.all
+    end
   end
 
   def new
