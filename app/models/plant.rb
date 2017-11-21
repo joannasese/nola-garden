@@ -14,8 +14,8 @@ class Plant < ApplicationRecord
   validates :days_to_maturity, presence: true
   validates :seasons, presence: true
 
-  # def self.by_season(season_id)
-  #   where(seasons: season_id)
-  # end
+  def self.by_season(season_id)
+    joins(:plant_seasons).where("season_id = ?", season_id)
+  end
 
 end
