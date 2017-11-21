@@ -1,14 +1,13 @@
-<p>Search:</p>
-
-<p><%= link_to 'Submit a plant', '../plants/new' %></p>
-
-<p><%= link_to 'All plants', plants_path %><br>
-
-
-
-
-
-
-<p>Favorites:</p>
-
-<!-- <p><%= link_to 'All plants', plants_path %></p> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= link_to 'Contribute a plant', '../plants/new', class: 'btn btn-success btn-lg' %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to 'Browse plants', plants_path, class: 'btn btn-success btn-lg' %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to 'My Favorites', plants_path, class: 'btn btn-success btn-lg' %>
+    </div>
+  </div>
+</div>

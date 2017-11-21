@@ -13,5 +13,18 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets"
-@import "bootstrap"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* universal */
+.title {
+  text-align: center;
+}
+
+.content {
+  text-align: center;
+}
+
+.user-dashboard {
+  text-align: right;
+}
