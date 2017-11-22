@@ -4,18 +4,20 @@ class Plant < ApplicationRecord
 
   belongs_to :user
 
-  validates :common_name, presence: true
-  validates :latin_name, presence: true
-  validates :variety, presence: true
-  validates :height, presence: true
-  validates :light, presence: true
-  validates :lifecycle, presence: true
-  validates :spacing, presence: true
-  validates :days_to_maturity, presence: true
-  validates :seasons, presence: true
+  validates_presence_of :common_name,
+    :latin_name,
+    :variety,
+    :height,
+    :light,
+    :lifecycle,
+    :spacing,
+    :days_to_maturity,
+    :seasons
 
-  def self.by_season(season_id)
-    joins(:plant_seasons).where("season_id = ?", season_id)
-  end
+  # def self.by_season(season_id)
+  #   joins(:plant_seasons).where("season_id = ?", season_id)
+  # end
+
+  scope :by_season, -> (season_id){ joins(:plant_seasons).where("plant_seasons.season_id = ?", season_id) }
 
 end
