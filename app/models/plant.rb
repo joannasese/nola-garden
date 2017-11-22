@@ -14,6 +14,8 @@ class Plant < ApplicationRecord
     :days_to_maturity,
     :seasons
 
+  validates_uniqueness_of :common_name, scope: :variety
+
   # def self.by_season(season_id)
   #   joins(:plant_seasons).where("season_id = ?", season_id)
   # end
