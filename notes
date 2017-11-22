@@ -1,0 +1,14 @@
+Google omniauth
+https://richonrails.com/articles/google-authentication-in-ruby-on-rails/
+
+Scope syntax
+http://api.rubyonrails.org/classes/ActiveRecord/Scoping/Named/ClassMethods.html
+
+collection_check_boxes
+https://makandracards.com/makandra/32147-rails-4-introduced-collection_check_boxes
+
+Search forms
+https://rubyplus.com/articles/3381-Simple-Search-Form-in-Rails-5
+
+Validate uniqueness of two columns
+https://stackoverflow.com/questions/34424154/rails-validate-uniqueness-of-two-columns-together
