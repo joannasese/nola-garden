@@ -17,13 +17,14 @@ delft_blue = Plant.create(
   spacing: 9,
   days_to_maturity: 75,
   user_id: 1,
-  season_ids: [1, 2]
+  season_ids: [1, 2],
+  image: "https://www.thompson-morgan.com/product_images/100/optimised/NIGE-TT52063-A_h.jpg"
 )
 
 cactus_rose = Plant.create(
   common_name: "Zinnia",
   latin_name: "Zinnia elegans",
-  variety: "Cactus rose",
+  variety: "Cactus Rose",
   height: 36,
   light: "Full sun",
   lifecycle: "Annual",

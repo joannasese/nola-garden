@@ -12,3 +12,6 @@ https://rubyplus.com/articles/3381-Simple-Search-Form-in-Rails-5
 
 Validate uniqueness of two columns
 https://stackoverflow.com/questions/34424154/rails-validate-uniqueness-of-two-columns-together
+
+Nested resources
+http://blog.8thcolor.com/en/2011/08/nested-resources-with-independent-views-in-ruby-on-rails/

@@ -1,2 +1,24 @@
-<h1>Plant show page</h1>
-<p><%= @plant.common_name %>
+<h3><%= @plant.variety %></h3>
+
+<div class="row">
+  <div class="col-md-3">
+  </div>
+
+  <div class="col-md-3">
+    <!-- <div class="plant_photo"> -->
+      <% if @plant.image %>
+        <!-- <%= image_tag(@plant.image) %> -->
+        <img src="<%= "#{@plant.image}" %>" class="plant_photo">
+      <% else %>
+        <img src="https://static1.squarespace.com/static/54f941f0e4b083dcfa39d86d/56e0ff51c2ea5145ed706e43/56e1016937013b4b09d90b5d/1457586562633/2016_PinkGarden_forPrint.png?format=1000w" class="plant_photo">
+      <% end %>
+    <!-- </div> -->
+  </div>
+
+  <div class="col-md-3">
+    <div class="plant_info">
+      <strong>Common name: </strong>
+      <%= @plant.common_name %>
+    </div>
+  </div>
+</div>

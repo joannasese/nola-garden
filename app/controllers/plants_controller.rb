@@ -27,10 +27,11 @@ class PlantsController < ApplicationController
     end
   end
 
-  def edit
+  def show
+    @plant = Plant.find_by(id: params[:id])
   end
 
-  def show
+  def edit
     @plant = Plant.find_by(id: params[:id])
   end
 
@@ -49,6 +50,7 @@ class PlantsController < ApplicationController
       :lifecycle,
       :spacing,
       :days_to_maturity,
+      :image,
       season_ids:[]
     )
   end
