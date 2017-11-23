@@ -4,10 +4,12 @@ class PlantsController < ApplicationController
   def index
     @seasons = Season.all
 
-    if !params[:season].blank?
+    if !params[:season].blank? #if dropdown menu selected
       @plants = Plant.by_season(params[:season])
+    elsif params[:user_id] #nested resource users/:id/plants
+      @plants = User.find_by(id: params[:user_id]).plants
     else
-      @plants = Plant.all
+      @plants = Plant.all #otherwise, show all the plants
     end
   end
 

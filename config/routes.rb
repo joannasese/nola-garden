@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :growing_seasons
+
+  resources :users
+
   resources :users do
+    # nested resource for plants
     resources :plants
   end
 
@@ -23,7 +27,6 @@ Rails.application.routes.draw do
 
   # get '/plants/new', to: 'plants#new'
   # post '/plants', to: 'plants#create'
-
 
 
 end

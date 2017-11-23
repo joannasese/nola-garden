@@ -6,5 +6,9 @@
 
  <p>Plants</p>
  <% @plants.each do |plant| %>
-   <%= link_to "#{plant.common_name}, #{plant.variety}", plant_path(plant) %><br>
+   <% if params[:user_id] %>
+     <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant) %><br>
+   <% else %>
+     <%= link_to "#{plant.common_name}, #{plant.variety}", plant_path(plant) %><br>
+   <% end %>
  <% end %>
