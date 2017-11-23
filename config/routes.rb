@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :growing_seasons
-  resources :users
+  resources :users do
+    resources :plants
+  end
+
   resources :plants
   resources :sessions
 

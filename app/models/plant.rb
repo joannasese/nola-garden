@@ -5,13 +5,13 @@ class Plant < ApplicationRecord
   belongs_to :user
 
   validates_presence_of :common_name,
-    :latin_name,
+    # :latin_name,
     :variety,
-    :height,
-    :light,
-    :lifecycle,
-    :spacing,
-    :days_to_maturity,
+    # :height,
+    # :light
+    # :lifecycle
+    # :spacing
+    # :days_to_maturity
     :seasons
 
   validates_uniqueness_of :common_name, scope: :variety
