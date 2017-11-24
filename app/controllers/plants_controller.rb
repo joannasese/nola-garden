@@ -21,7 +21,7 @@ class PlantsController < ApplicationController
     @plant = Plant.new(plant_params)
     @plant.user_id = current_user.id
     if @plant.save
-      redirect_to plant_path(@plant)
+      redirect_to user_plant_path(current_user, @plant)
     else
       render :new
     end
@@ -51,7 +51,7 @@ class PlantsController < ApplicationController
       :spacing,
       :days_to_maturity,
       :image,
-      season_ids:[] 
+      season_ids:[]
       # :seasons
     )
   end
