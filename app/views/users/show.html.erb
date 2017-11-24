@@ -1,16 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <%= link_to 'Contribute a plant', '../plants/new', class: 'btn btn-success btn-lg' %>
+    <div class="col-md-4 col-md-offset-4">
+      <p><%= link_to 'Contribute a plant', '../plants/new', class: 'btn btn-success btn-lg' %><br>
     </div>
-    <div class="col-md-3">
-      <%= link_to 'Browse plants', plants_path, class: 'btn btn-success btn-lg' %>
+
+    <div class="col-md-4 col-md-offset-4">
+      <p><%= link_to 'Browse plants', plants_path, class: 'btn btn-success btn-lg' %><br>
     </div>
-    <div class="col-md-3">
-      <%= link_to 'My Favorites', plants_path, class: 'btn btn-success btn-lg' %>
-    </div>
-    <div class="col-md-3">
-      <%= link_to 'My Plants', user_plants_path(@user), class: 'btn btn-success btn-lg' %>
+
+    <div class="col-md-4 col-md-offset-4">
+      <p><%= link_to 'My Plants', user_plants_path(@user), class: 'btn btn-success btn-lg' %><br>
     </div>
   </div>
 </div>
