@@ -51,7 +51,7 @@ class PlantsController < ApplicationController
       :spacing,
       :days_to_maturity,
       :image,
-      season_ids:[]
+      season_ids:[] #do we need this anymore?
     )
   end
 end
