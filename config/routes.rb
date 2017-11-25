@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  resources :tags
   resources :growing_seasons
-
   resources :users
 
   resources :users do
