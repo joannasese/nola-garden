@@ -1,7 +1,7 @@
-<!-- For admin only, implement later -->
 <%= stylesheet_link_tag "application" %>
 <h2>Submit a Plant</h2>
 
+<!-- ERROR MESSAGES -->
 <% if @plant.errors.any? %>
   <div class="error_explanation">
     <%= pluralize(@plant.errors.count, "error") %> prohibited this plant from being submitted:<br>
@@ -11,6 +11,7 @@
   </div>
 <% end %>
 
+<!-- COMMON NAME -->
 <%= form_for @plant do |f| %>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
@@ -19,6 +20,7 @@
     </div>
   </div>
 
+<!-- LATIN NAME -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p>Latin name:<br>
@@ -26,6 +28,7 @@
     </div>
   </div>
 
+<!-- VARIETY -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p>Variety:<br>
@@ -33,6 +36,7 @@
     </div>
   </div>
 
+<!-- HEIGHT -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p>Height:<br>
@@ -40,6 +44,7 @@
     </div>
   </div>
 
+<!-- LIGHT -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p>Light requirements:<br>
@@ -47,6 +52,7 @@
     </div>
   </div>
 
+<!-- LIFE CYCLE -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p>Lifecycle:<br>
@@ -54,6 +60,7 @@
     </div>
   </div>
 
+<!-- SPACING -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p>Spacing (inches):<br>
@@ -61,6 +68,7 @@
     </div>
   </div>
 
+<!-- SEASONS -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p>Sowing season:<br>
@@ -80,6 +88,7 @@
     </div>
   </div>
 
+<!-- DAYS TO MATURITY -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p>Days to maturity:<br>
@@ -87,6 +96,20 @@
     </div>
   </div>
 
+<!-- TAGS -->
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <p>Tags:<br>
+      <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %><br>
+      New tag: 
+      <%= f.fields_for :tags, @plant.tags.build do |tags_fields| %>
+        <%= tags_fields.text_field :name %>
+      <% end %>
+
+     </div>
+   </div>
+
+<!-- IMAGE-->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p>Image URL:<br>

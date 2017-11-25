@@ -51,7 +51,9 @@ class PlantsController < ApplicationController
       :spacing,
       :days_to_maturity,
       :image,
-      season_ids:[]
+      season_ids:[],
+      tag_ids: [],
+      tags_attributes: [:name]
       # :seasons
     )
   end
