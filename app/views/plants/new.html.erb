@@ -72,7 +72,6 @@
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p>Sowing season:<br>
-        <!-- use :season_ids or :seasons ? -->
         <%= f.collection_check_boxes(:season_ids, Season.all, :id, :season) do |b| %>
         <div class="row">
           <%= b.label(class: "check_box") do %>
@@ -88,6 +87,7 @@
     </div>
   </div>
 
+<p>
 <!-- DAYS TO MATURITY -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
@@ -99,16 +99,30 @@
 <!-- TAGS -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
+
       <p>Tags:<br>
-      <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %><br>
-      New tag: 
+      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
+        <div class="row">
+          <%= b.label(class: "check_box") do %>
+            <div class="col-xs-4">
+              <%= b.check_box(class: "check_box") %>
+            </div>
+            <div class="col-xs-6">
+              <%= b.object.name %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      New tag:
       <%= f.fields_for :tags, @plant.tags.build do |tags_fields| %>
-        <%= tags_fields.text_field :name %>
+        <%= tags_fields.text_field :name %><br>
       <% end %>
 
      </div>
    </div>
 
+<p>
 <!-- IMAGE-->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">

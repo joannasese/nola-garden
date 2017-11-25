@@ -54,7 +54,6 @@ class PlantsController < ApplicationController
       season_ids:[],
       tag_ids: [],
       tags_attributes: [:name]
-      # :seasons
     )
   end
 end
