@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123051808) do
+ActiveRecord::Schema.define(version: 20171125064332) do
 
   create_table "plant_seasons", force: :cascade do |t|
     t.integer "plant_id"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 20171123051808) do
     t.datetime "updated_at", null: false
     t.index ["plant_id"], name: "index_plant_seasons_on_plant_id"
     t.index ["season_id"], name: "index_plant_seasons_on_season_id"
+  end
+
+  create_table "plant_tags", force: :cascade do |t|
+    t.integer "plant_id"
+    t.integer "tag_id"
   end
 
   create_table "plants", force: :cascade do |t|
@@ -38,6 +43,12 @@ ActiveRecord::Schema.define(version: 20171123051808) do
 
   create_table "seasons", force: :cascade do |t|
     t.string "season"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
