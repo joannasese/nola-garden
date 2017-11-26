@@ -7,6 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 seasons = Season.create([{season: 'Fall'}, {season: 'Winter'}, {season: 'Spring'}, {season: 'Summer'}])
 
+tags = Tag.create([
+  {name: 'Easy to grow'},
+  {name: 'Cut flower'},
+  {name: 'Heat-loving'}
+  ])
+
 delft_blue = Plant.create(
   common_name: "Nigella",
   latin_name: "Nigella papillosa",
@@ -18,7 +24,6 @@ delft_blue = Plant.create(
   days_to_maturity: 75,
   user_id: 1,
   season_ids: [1, 2],
-  # seasons: ["Fall", "Winter"],
   image: "https://www.thompson-morgan.com/product_images/100/optimised/NIGE-TT52063-A_h.jpg"
 )
 

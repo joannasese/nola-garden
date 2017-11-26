@@ -1,6 +1,10 @@
 // Place all the styles related to the plants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+a.content-link {
+  color: #6D7587;
+}
+
 .error_explanation{
   color: red;
   font-weight: bold;
@@ -14,31 +18,15 @@
   text-align: left;
 }
 
-//
-// .round-image{
-//   width: 100px;
-//       height: 100px;
-//       -webkit-box-shadow: 0px 0px 10px #4d4d4d;
-//       -moz-box-shadow: 0px 0px 10px #4d4d4d;
-//       box-shadow: 0px 0px 10px #4d4d4d;
-//       -webkit-border-radius: 8px;
-//       -moz-border-radius: 8px;
-//       -khtml-border-radius: 8px;
-//       border-radius: 8px;
-//       border:solid white 3px;
-//       overflow: hidden;
-//       padding: 10px;
-// }
-
 img.plant-photo{
   float: right;
-  // -webkit-border-radius: 8px;
-  // -moz-border-radius: 8px;
-  // -khtml-border-radius: 8px;
   border-radius: 20px;
   width: 50%;
   height: auto;
-  // overflow: hidden;
+}
+
+.col-xs-6{
+  font-weight: normal;
 }
 
 // https://stackoverflow.com/questions/24109276/how-to-align-input-and-label-from-collection-check-boxes

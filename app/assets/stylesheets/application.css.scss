@@ -17,16 +17,41 @@
 @import "bootstrap";
 
 /* universal */
+
+.content {
+  background-color: #FFFBF3;
+}
+
+a.main-link {
+  color: #FFFFFF;
+}
+
+a:hover {
+  color: #1e6912;
+  text-decoration: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 .title {
   text-align: center;
+  background-color: #64B058;
   padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.user-dashboard {
+  color: #FFFFFF;
+  text-align: right;
+  background-color: #C766C3;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
 }
 
 .content {
   text-align: center;
-  padding-top: 50px;
-}
-
-.user-dashboard {
-  text-align: right;
+  padding: 30px;
 }

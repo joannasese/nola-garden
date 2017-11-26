@@ -17,10 +17,10 @@
           </h1>
         <% else %>
           <h1 class="title">
-            <%= link_to 'New Orleans Plant Library', user_path(current_user) %>
+            <%= link_to 'New Orleans Plant Library', user_path(current_user), class: "main-link" %>
           </h1>
           <div class="user-dashboard">
-            Hello <%= current_user.name %> | <%= link_to 'Logout', '/logout' %>
+            Hello <%= current_user.name %> | <%= link_to 'Logout', '/logout', class: "main-link" %>
           </div>
         <% end %>
 
@@ -29,6 +29,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>

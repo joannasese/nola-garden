@@ -22,4 +22,14 @@ class Plant < ApplicationRecord
     end
   end
 
+  def tagged
+    if !self.tags.empty?
+      self.tags.each do |tag|
+        tag.name
+      end
+    else
+      "No tags yet!"
+    end
+  end
+
 end

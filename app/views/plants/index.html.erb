@@ -1,14 +1,17 @@
 <h3>Filter plants:</h3>
   <%= form_tag("/plants", method: "get") do %>
+    <p>
     <%= select_tag "season", options_from_collection_for_select(@seasons, "id", "season"), prompt: "All seasons" %>
     <%= submit_tag "Filter" %>
+    </p>
   <% end %>
 
- <p>Plants</p>
+<div>
  <% @plants.each do |plant| %>
    <% if params[:user_id] %>
-     <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant) %><br>
+     <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant), class: "content-link" %><br>
    <% else %>
-     <%= link_to "#{plant.common_name}, #{plant.variety}", plant_path(plant) %><br>
+     <%= link_to "#{plant.common_name}, #{plant.variety}", plant_path(plant), class: "content-link" %><br>
    <% end %>
  <% end %>
+</div>
