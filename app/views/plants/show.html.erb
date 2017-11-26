@@ -37,10 +37,14 @@
       <%= @plant.light %>
       <p>
       <div class="bold">Height:</div>
-      <%= @plant.height %>"
+      <% if @plant.height %>
+        <%= @plant.height %>"
+      <% end %>
       <p>
       <div class="bold">Spacing:</div>
-      <%= @plant.spacing %>"
+      <% if @plant.spacing %>
+        <%= @plant.spacing %>"
+      <% end %>
       <p>
       <div class="bold">When to sow seed:</div>
         <% @plant.seasons.each do |s| %>
@@ -48,7 +52,14 @@
         <% end %>
       <p>
       <div class="bold">Tags:</div>
-        <%= @plant.tagged %>
+        <!-- <%= @plant.tagged %> -->
+        <% if !@plant.tags.empty? %>
+          <% @plant.tags.each do |tag| %>
+            <%= tag.name %>
+          <% end %>
+        <% else %>
+          "No tags yet!"
+        <% end %>
     </div>
   </div>
 </div>
