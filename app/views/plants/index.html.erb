@@ -1,4 +1,9 @@
-<h3>Filter plants:</h3>
+<% if params[:user_id] %>
+  <h3>My Plants</h3>
+<% else %>
+  <h3>All Plants:</h3>
+<% end %>
+
   <%= form_tag("/plants", method: "get") do %>
     <p>
     <%= select_tag "season", options_from_collection_for_select(@seasons, "id", "season"), prompt: "All seasons", class: 'btn' %>
