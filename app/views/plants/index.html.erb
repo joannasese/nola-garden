@@ -7,20 +7,18 @@
   <% end %>
 
 <div>
- <% @plants.each do |plant| %>
-   <% if params[:user_id] %>
-     <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant), class: "content-link" %><br>
-   <% else %>
-     <%= link_to "#{plant.common_name}, #{plant.variety}", plant_path(plant), class: "content-link" %><br>
-   <% end %>
- <% end %>
-</div>
-
-<div>
-  <p>
+<!-- seems WET but not sure how to DRY it up -->
   <% if params[:user_id] %>
+    <% @plants.each do |plant| %>
+      <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant), class: "content-link" %><br>
+    <% end %>
+    <p>
     <p><%= link_to "Submit a new plant", new_user_plant_path, class: 'btn' %></p>
   <% else %>
+    <% @plants.each do |plant| %>
+      <%= link_to "#{plant.common_name}, #{plant.variety}", plant_path(plant), class: "content-link" %><br>
+    <% end %>
+    <p>
     <p><%= link_to "Submit a new plant", new_plant_path, class: 'btn' %></p>
   <% end %>
 </div>
