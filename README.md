@@ -14,4 +14,4 @@ Contributors guide:
 Have a suggestion? Need to report a bug? File an issue with a pull request at https://github.com/joannasese/nola-garden/pulls.
 
 Licensing statement:
-This project has been licensed under the MIT open source license.
+This project has been licensed under the MIT open source license. See LICENSE.txt.
