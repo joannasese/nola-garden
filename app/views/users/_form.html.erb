@@ -1,0 +1,27 @@
+<%= form_for user do |f| %>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%= f.label "Username" %><br>
+      <%= f.text_field :name, class: "form-control" %><br>
+    </div>
+
+    <div class="col-md-4 col-md-offset-4">
+      <%= f.label :email %><br>
+      <%= f.text_field :email, class: "form-control" %><br>
+    </div>
+
+    <div class="col-md-4 col-md-offset-4">
+      <%= f.label :password %><br>
+      <%= f.password_field :password, class: "form-control" %><br>
+    </div>
+
+    <div class="col-md-4 col-md-offset-4">
+      <%= f.label :password_confirmation %><br>
+      <%= f.password_field :password_confirmation, class: "form-control" %><br>
+    </div>
+
+    <div class="col-md-4 col-md-offset-4">
+      <%= f.submit class: "btn btn-success"%>
+    </div>
+  </div>
+<% end %>

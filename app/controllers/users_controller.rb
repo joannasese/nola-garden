@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
   before_action :require_login
-  skip_before_action :require_login, except: [:show]
+  skip_before_action :require_login, except: [:show] #skips require_login except for show
 
   def index
     if current_user
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user) #user show page
     end
   end
 
   def new
     if current_user
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user) #user show page
     else
       @user = User.new
     end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      render :new
+      render :new #renders new page with error messages
     end
   end
 
