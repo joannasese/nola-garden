@@ -1,18 +1,23 @@
+<!-- seems WET but not sure how to DRY it up -->
 <% if params[:user_id] %>
   <h3>My Plants</h3>
-<% else %>
-  <h3>All Plants:</h3>
-<% end %>
-
-  <%= form_tag("/plants", method: "get") do %>
+  <%= form_tag(user_plants_path, method: "get") do %>
     <p>
     <%= select_tag "season", options_from_collection_for_select(@seasons, "id", "season"), prompt: "All seasons", class: 'btn' %>
     <%= submit_tag "Filter", class: 'btn' %>
     </p>
   <% end %>
+<% else %>
+  <h3>All Plants:</h3>
+  <%= form_tag(plants_path, method: "get") do %>
+    <p>
+    <%= select_tag "season", options_from_collection_for_select(@seasons, "id", "season"), prompt: "All seasons", class: 'btn' %>
+    <%= submit_tag "Filter", class: 'btn' %>
+    </p>
+  <% end %>
+<% end %>
 
 <div>
-<!-- seems WET but not sure how to DRY it up -->
   <% if params[:user_id] %>
     <% @plants.each do |plant| %>
       <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant), class: "content-link" %><br>
