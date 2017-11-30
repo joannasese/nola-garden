@@ -35,8 +35,11 @@ class PlantsController < ApplicationController
   end
 
   def show
-    @plant = Plant.find_by(id: params[:id])
-    @user = User.find_by(id: params[:id])
+    if params[:user_id].to_i == current_user.id || !params[:user_id]
+      @plant = Plant.find_by(id: params[:id])
+    else
+      render '/users/error'
+    end
   end
 
   def edit
