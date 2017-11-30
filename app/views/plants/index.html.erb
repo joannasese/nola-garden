@@ -1,9 +1,11 @@
+<!-- PLANT INDEX /plants OR /user/:id/plants -->
 <!-- seems WET but not sure how to DRY it up -->
 <% if params[:user_id] %>
   <h3>My Plants</h3>
   <%= form_tag(user_plants_path, method: "get") do %>
     <p>
     <%= select_tag "season", options_from_collection_for_select(@seasons, "id", "season"), prompt: "All seasons", class: 'btn' %>
+    <!-- SYNTAX PULLED FROM https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/options_from_collection_for_select -->
     <%= submit_tag "Filter", class: 'btn' %>
     </p>
   <% end %>
