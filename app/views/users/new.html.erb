@@ -1,5 +1,11 @@
 <h2>Sign Up</h2>
 
+<p><a href="/auth/google_oauth2">
+<img src="https://developers.google.com/accounts/images/sign-in-with-google.png" width="200px" height="auto">
+</a>
+
+<p>or create an account.
+
 <% if @user.errors.any? %>
   <div class="error_explanation">
     <% @user.errors.full_messages.each do |msg| %>
