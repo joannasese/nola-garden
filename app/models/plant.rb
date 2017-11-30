@@ -26,9 +26,9 @@ class Plant < ApplicationRecord
     end
   end
 
-  def tagged
+  def tagged #not working
     if !self.tags.empty?
-      self.tags.each do |tag|
+      tags.each do |tag|
         tag.name
       end
     else
