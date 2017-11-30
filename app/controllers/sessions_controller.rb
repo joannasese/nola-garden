@@ -21,8 +21,6 @@ class SessionsController < ApplicationController
       redirect_to user_path(@user)
     else
       redirect_to '/login', flash: {notice: "Oops, a valid username and/or password is required. Please try again."}
-      # render :new
-      # flash[:error] = "Messed up!" #not working
     end
   end
 

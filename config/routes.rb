@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
   resources :tags
   resources :growing_seasons
+  resources :plants
+  resources :sessions
   resources :users
 
   # nested resource for plants
   resources :users do
     resources :plants
   end
-
-  resources :plants
-  resources :sessions
 
   get '/', to: 'users#index'
   get '/signup', to: 'users#new'

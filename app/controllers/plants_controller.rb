@@ -6,7 +6,7 @@ class PlantsController < ApplicationController
 
     if !params[:season].blank? #if season selected from dropdown menu selected, show plants by season
       if params[:user_id]
-        @plants = Plant.by_season_with_user(params[:season], params[:user_id])
+        @plants = Plant.by_season_with_user(params[:season], params[:user_id]) #invoke scope method from Plant model
       else
         @plants = Plant.by_season(params[:season])
       end
