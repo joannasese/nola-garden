@@ -3,16 +3,14 @@ class PlantsController < ApplicationController
 
   def index
     @seasons = Season.all
-    if params[:user_id].to_i == current_user.id #safeguards against accessing other user's pages
-      if !params[:season].blank? #if season selected from dropdown menu selected, show plants by season
-        if params[:user_id]
-          @plants = Plant.by_season_with_user(params[:season], params[:user_id]) #invoke scope method from Plant model
-        else
-          @plants = Plant.by_season(params[:season])
-        end
-      elsif params[:user_id] #if accessing plant index thru nested resource users/:id/plants, show user's plants only
-        @plants = User.find_by(id: params[:user_id]).plants
+    if !params[:season].blank? #if season selected from dropdown menu selected, show plants by season
+      if params[:user_id] && params[:user_id].to_i == current_user.id #safeguards against accessing other user's pages
+        @plants = Plant.by_season_with_user(params[:season], params[:user_id]) #invoke scope method from Plant model
+      else
+        @plants = Plant.by_season(params[:season])
       end
+    elsif params[:user_id] && params[:user_id].to_i == current_user.id #if accessing plant index thru nested resource users/:id/plants, show user's plants only
+      @plants = User.find_by(id: params[:user_id]).plants
     elsif !params[:user_id]
       @plants = Plant.all
     else
