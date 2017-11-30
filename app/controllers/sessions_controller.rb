@@ -10,8 +10,12 @@ class SessionsController < ApplicationController
 
   def create_with_google
     @user = User.from_omniauth(request.env["omniauth.auth"])
-    session[:user_id] = @user.id
-    redirect_to user_path(@user)
+    if @user
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
+    else
+      redirect_to '/login', flash: {notice: "Oops, something got tangled up. Please try again."}
+    end
   end
 
   def create
