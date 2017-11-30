@@ -27,8 +27,18 @@ class UsersController < ApplicationController
   end
 
   def show
+    # if logged_in?
+    #   @user = User.find_by(id: params[:id])
+    # else
+    #   redirect_to '/login'
+    # end
+
     if logged_in?
-      @user = User.find_by(id: params[:id])
+      if params[:id].to_i == current_user.id
+        @user = User.find_by(id: params[:id])
+      else
+        render :error
+      end
     else
       redirect_to '/login'
     end
