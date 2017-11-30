@@ -10,7 +10,8 @@ seasons = Season.create([{season: 'Fall'}, {season: 'Winter'}, {season: 'Spring'
 tags = Tag.create([
   {name: 'Easy to grow'},
   {name: 'Cut flower'},
-  {name: 'Heat-loving'}
+  {name: 'Heat-loving'},
+  {name: 'Edible'}
   ])
 
 delft_blue = Plant.create(
@@ -37,7 +38,9 @@ cactus_rose = Plant.create(
   spacing: 9,
   days_to_maturity: 75,
   user_id: 1,
-  season_ids: [3, 4]
+  season_ids: [3, 4],
+  image: "https://www.rareseeds.com/assets/1/14/DimRegular/Flower-Zinnia-Burpee-Giant-Rose-Cactus-FL812-DSC07931-(1).jpg",
+  tag_ids: [2,3]
 )
 
 procut_orange = Plant.create(
@@ -50,5 +53,21 @@ procut_orange = Plant.create(
   spacing: 9,
   days_to_maturity: 60,
   user_id: 1,
-  season_ids: [3, 4]
+  season_ids: [3, 4],
+  image: "http://demandware.edgesuite.net/sits_pod32/dw/image/v2/BBBW_PRD/on/demandware.static/-/Sites-jss-master/default/dw625729c3/images/products/flowers/01712_01_procutorange.jpg?sw=774&cx=302&cy=0&cw=1196&ch=1196"
+)
+
+roselle = Plant.create(
+  common_name: "Roselle",
+  latin_name: "Hibiscus sabdariffa",
+  variety: "Thai Red",
+  height: 96,
+  light: "Full sun",
+  lifecycle: "Perennial",
+  spacing: 36,
+  days_to_maturity: nil,
+  user_id: 1,
+  season_ids: [3],
+  image: "https://cdn.shopify.com/s/files/1/0083/4602/products/hibiscus_sabdariffa-02.jpg?v=1475600936",
+  tag_ids: [3,4]
 )

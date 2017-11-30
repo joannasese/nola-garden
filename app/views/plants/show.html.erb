@@ -55,10 +55,10 @@
         <!-- <%= @plant.tagged %> -->
         <% if !@plant.tags.empty? %>
           <% @plant.tags.each do |tag| %>
-            <%= tag.name %>
+            <%= tag.name %><br>
           <% end %>
         <% else %>
-          "No tags yet!"
+          No tags yet!
         <% end %>
     </div>
   </div>
