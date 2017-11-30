@@ -19,7 +19,7 @@
 /* universal */
 
 .content {
-  background-color: #FFFBF3;
+  background-color: #FFFBF3; //eggshell
 }
 
 a.main-link {
@@ -27,7 +27,7 @@ a.main-link {
 }
 
 a:hover {
-  color: #1e6912;
+  color: #17C87D; //tropical green
   text-decoration: none;
 }
 
@@ -36,8 +36,9 @@ a:hover {
 }
 
 .title {
+  font-family: 'Bevan', cursive;
   text-align: center;
-  background-color: #64B058;
+  background-color: #127F4F; //darkish green
   padding-top: 30px;
   padding-bottom: 30px;
 }
@@ -45,7 +46,7 @@ a:hover {
 .user-dashboard {
   color: #FFFFFF;
   text-align: right;
-  background-color: #C766C3;
+  background-color: #F77AB5; //pink
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 10px;

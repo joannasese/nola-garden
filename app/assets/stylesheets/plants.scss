@@ -1,17 +1,22 @@
 // Place all the styles related to the plants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 a.content-link {
-  color: #6D7587;
+  color: #6D7587; //grey
 }
 
 .error_explanation{
-  color: red;
+  color: #E83246; //poppy red
   font-weight: bold;
 }
 
 .plant-title{
   padding-bottom: 10px;
+}
+
+#plant-title{
+  font-family: 'Bevan', cursive;
 }
 
 .plant-info{
