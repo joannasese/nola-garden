@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :growing_seasons
   resources :users
 
+  # nested resource for plants
   resources :users do
-    # nested resource for plants
     resources :plants
   end
 
@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   resources :sessions
 
   get '/', to: 'users#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/signup', to: 'users#new'
   post '/users', to: 'users#create'
 
@@ -24,9 +23,5 @@ Rails.application.routes.draw do
   # get '/auth/google_oauth2/callback', to: 'sessions#create_with_google'
   get '/auth/:provider/callback', to: 'sessions#create_with_google'
   get '/auth/failure', to: 'users#index'
-
-  # get '/plants/new', to: 'plants#new'
-  # post '/plants', to: 'plants#create'
-
 
 end
