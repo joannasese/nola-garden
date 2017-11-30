@@ -2,8 +2,8 @@ class User < ApplicationRecord
   has_many :plants
 
   validates_presence_of :name, :email, if: :traditional_login
-  validates_uniqueness_of :name
   validates_uniqueness_of :email, if: :traditional_login
+  validates_uniqueness_of :name
 
   has_secure_password
 
