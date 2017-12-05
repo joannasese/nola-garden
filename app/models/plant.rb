@@ -26,14 +26,4 @@ class Plant < ApplicationRecord
     end
   end
 
-  def tagged #not working
-    if !self.tags.empty?
-      tags.each do |tag|
-        tag.name
-      end
-    else
-      "No tags yet!"
-    end
-  end
-
 end
