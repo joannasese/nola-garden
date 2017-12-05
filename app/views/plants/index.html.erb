@@ -1,17 +1,36 @@
-<h3>Filter plants:</h3>
-  <%= form_tag("/plants", method: "get") do %>
+<!-- PLANT INDEX /plants OR /user/:id/plants -->
+<!-- seems WET but not sure how to DRY it up -->
+<% if params[:user_id] %>
+  <h3>My Plants</h3>
+  <%= form_tag(user_plants_path, method: "get") do %>
     <p>
-    <%= select_tag "season", options_from_collection_for_select(@seasons, "id", "season"), prompt: "All seasons" %>
-    <%= submit_tag "Filter" %>
+    <%= select_tag "season", options_from_collection_for_select(@seasons, "id", "season"), prompt: "All seasons", class: 'btn' %>
+    <!-- SYNTAX PULLED FROM https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/options_from_collection_for_select -->
+    <%= submit_tag "Filter", class: 'btn' %>
     </p>
   <% end %>
+<% else %>
+  <h3>All Plants:</h3>
+  <%= form_tag(plants_path, method: "get") do %>
+    <p>
+    <%= select_tag "season", options_from_collection_for_select(@seasons, "id", "season"), prompt: "All seasons", class: 'btn' %>
+    <%= submit_tag "Filter", class: 'btn' %>
+    </p>
+  <% end %>
+<% end %>
 
 <div>
- <% @plants.each do |plant| %>
-   <% if params[:user_id] %>
-     <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant), class: "content-link" %><br>
-   <% else %>
-     <%= link_to "#{plant.common_name}, #{plant.variety}", plant_path(plant), class: "content-link" %><br>
-   <% end %>
- <% end %>
+  <% if params[:user_id] %>
+    <% @plants.sort{|a,b| a.common_name.downcase <=> b.common_name.downcase}.each do |plant| %>
+      <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant), class: "content-link" %><br>
+    <% end %>
+    <p>
+    <p><%= link_to "Submit a new plant", new_user_plant_path, class: 'btn' %></p>
+  <% else %>
+    <% @plants.sort{|a,b| a.common_name.downcase <=> b.common_name.downcase}.each do |plant| %>
+      <%= link_to "#{plant.common_name}, #{plant.variety}", plant_path(plant), class: "content-link" %><br>
+    <% end %>
+    <p>
+    <p><%= link_to "Submit a new plant", new_plant_path, class: 'btn' %></p>
+  <% end %>
 </div>

@@ -1,15 +1,22 @@
 class PlantsController < ApplicationController
   before_action :require_login
 
-  def index
+  def index #HOT MESS CLEAN THIS UP
     @seasons = Season.all
-
-    if !params[:season].blank? #if dropdown menu selected
-      @plants = Plant.by_season(params[:season])
-    elsif params[:user_id] #nested resource users/:id/plants
+    if !params[:season].blank? #if season selected from dropdown menu selected, show plants by season
+      if params[:user_id].to_i == current_user.id #safeguards against accessing other user's pages
+        @plants = Plant.by_season_with_user(params[:season], params[:user_id]) #invoke scope method from Plant model
+      elsif !params[:user_id]
+        @plants = Plant.by_season(params[:season])
+      # else
+      #   render '/users/error'
+      end
+    elsif params[:user_id].to_i == current_user.id #if accessing plant index thru nested resource users/:id/plants, show user's plants only
       @plants = User.find_by(id: params[:user_id]).plants
+    elsif !params[:user_id]
+      @plants = Plant.all
     else
-      @plants = Plant.all #otherwise, show all the plants
+      render '/users/error'
     end
   end
 
@@ -28,7 +35,11 @@ class PlantsController < ApplicationController
   end
 
   def show
-    @plant = Plant.find_by(id: params[:id])
+    if params[:user_id].to_i == current_user.id || !params[:user_id]
+      @plant = Plant.find_by(id: params[:id])
+    else
+      render '/users/error'
+    end
   end
 
   def edit
@@ -36,6 +47,12 @@ class PlantsController < ApplicationController
   end
 
   def update
+    @plant = Plant.find_by(id: params[:id])
+    if @plant.update_attributes(plant_params)
+      redirect_to plant_path(@plant)
+    else
+      render :edit
+    end
   end
 
   private

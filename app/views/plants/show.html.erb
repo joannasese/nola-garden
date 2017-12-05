@@ -1,9 +1,11 @@
+<!-- PLANT SHOW PAGE /plants/:id OR /users/:id/plants/:id-->
+
 <div class="plant-title">
-  <h3><%= @plant.variety %></h3>
+  <h2 id="plant-title"><%= @plant.variety %></h2>
   <% if params[:user_id] %>
-    <%= link_to "Return to plants index", user_plants_path %>
+    <%= link_to "Return to plants index", user_plants_path, class: "content-link" %> | <%= link_to "Edit plant", edit_user_plant_path, class: "content-link" %>
   <% else %>
-    <%= link_to "Return to plants index", plants_path %>
+    <%= link_to "Return to plants index", plants_path, class: "content-link" %> | <%= link_to "Edit plant", edit_plant_path, class: "content-link" %>
   <% end %>
 </div>
 
@@ -54,11 +56,13 @@
       <div class="bold">Tags:</div>
         <!-- <%= @plant.tagged %> -->
         <% if !@plant.tags.empty? %>
+        <ul>
           <% @plant.tags.each do |tag| %>
-            <%= tag.name %>
+            <li><%= tag.name %></li>
           <% end %>
+        </ul>
         <% else %>
-          "No tags yet!"
+          No tags yet!
         <% end %>
     </div>
   </div>

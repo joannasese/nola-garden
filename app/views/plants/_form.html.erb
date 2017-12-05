@@ -2,7 +2,7 @@
 <%= form_for plant do |f| %>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <p class="bold">Common name:<br>
+      <p class="bold">Common name:*<br>
       <%= f.text_field :common_name, class: "form-control" %><br>
     </div>
   </div>
@@ -18,7 +18,7 @@
 <!-- VARIETY -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <p class="bold">Variety:<br>
+      <p class="bold">Variety:*<br>
       <%= f.text_field :variety, class: "form-control" %><br>
     </div>
   </div>
@@ -26,7 +26,7 @@
 <!-- HEIGHT -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <p class="bold">Height:<br>
+      <p class="bold">Height (inches):<br>
       <%= f.text_field :height, class: "form-control" %><br>
     </div>
   </div>
@@ -35,7 +35,7 @@
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p class="bold">Light requirements:<br>
-        <%= f.select :light, options_for_select([['Select one', ''], 'Full sun', 'Part sun', 'Shade']), {}, class: "form-control" %><br>
+        <%= f.select :light, options_for_select([['Select one', ''], 'Full sun', 'Part sun', 'Shade'], selected: f.object.light), {}, class: "form-control" %><br>
     </div>
   </div>
 
@@ -43,7 +43,7 @@
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p class="bold">Lifecycle:<br>
-        <%= f.select :lifecycle, options_for_select([['Select one', ''], 'Annual', 'Perennial']), {}, class: "form-control" %><br>
+        <%= f.select :lifecycle, options_for_select([['Select one', ''], 'Annual', 'Perennial'], selected: f.object.lifecycle), {}, class: "form-control" %><br>
     </div>
   </div>
 
@@ -58,7 +58,7 @@
 <!-- SEASONS -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <p class="bold">Sowing season:<br>
+      <p class="bold">Sowing season:*<br>
         <%= f.collection_check_boxes(:season_ids, Season.all, :id, :season) do |b| %>
         <div class="row">
           <%= b.label(class: "check_box") do %>
@@ -105,7 +105,6 @@
       <%= f.fields_for :tags, plant.tags.build do |tags_fields| %>
         <%= tags_fields.text_field :name %><br>
       <% end %>
-
      </div>
    </div>
 
@@ -118,6 +117,7 @@
     </div>
   </div>
 
+<!-- SUBMIT -->
  <div class="row">
    <%= f.submit class: 'btn' %>
  </div>
