@@ -16,10 +16,10 @@
   </div>
 
   <div class="col-md-3">
-    <% if @plant.image != nil && @plant.image != "" %>
-      <img src="<%= "#{@plant.image}" %>" class="plant-photo">
+    <% if @plant.image.url != "/images/original/missing.png" %>
+      <%= link_to image_tag(@plant.image.url, class: "plant-photo"), @plant.image.url %>
     <% else %>
-      <img src="https://static1.squarespace.com/static/54f941f0e4b083dcfa39d86d/56e0ff51c2ea5145ed706e43/56e1016937013b4b09d90b5d/1457586562633/2016_PinkGarden_forPrint.png?format=1000w" class="plant-photo">
+      <%= image_tag("https://static1.squarespace.com/static/54f941f0e4b083dcfa39d86d/56e0ff51c2ea5145ed706e43/56e1016937013b4b09d90b5d/1457586562633/2016_PinkGarden_forPrint.png?format=1000w", class: "plant-photo") %>
     <% end %>
   </div>
 
