@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     redirect_to '/users/error' unless params[:user_id].to_i == current_user.id || !params[:user_id]
   end
 
+  def editable
+    current_user.plants.ids.include?(params[:id].to_i)
+  end
+
   def logged_in?
     !current_user = nil
   end

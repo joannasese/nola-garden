@@ -3,9 +3,9 @@
 <div class="plant-title">
   <h2 id="plant-title"><%= @plant.variety %></h2>
   <% if params[:user_id] %>
-    <%= link_to "Return to plants index", user_plants_path, class: "content-link" %> | <%= link_to "Edit plant", edit_user_plant_path, class: "content-link" %>
+    <%= link_to "Return to plants index", user_plants_path, class: "content-link" %><%= link_to " | Edit plant", edit_user_plant_path, class: "content-link" if editable %>
   <% else %>
-    <%= link_to "Return to plants index", plants_path, class: "content-link" %> | <%= link_to "Edit plant", edit_plant_path, class: "content-link" %>
+    <%= link_to "Return to plants index", plants_path, class: "content-link" %><%= link_to " | Edit plant", edit_plant_path, class: "content-link" if editable %>
   <% end %>
 </div>
 
@@ -54,7 +54,6 @@
         <% end %>
       <p>
       <div class="bold">Tags:</div>
-        <!-- <%= @plant.tagged %> -->
         <% if !@plant.tags.empty? %>
         <ul>
           <% @plant.tags.each do |tag| %>
