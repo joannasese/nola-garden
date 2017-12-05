@@ -1,23 +1,39 @@
 class PlantsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, :authorize
+  skip_before_action :authorize, except: [:index, :show, :edit]
+  #before action to authorize users. if user_id != current_user, implement redirect
 
-  def index #HOT MESS CLEAN THIS UP
+  # def index #HOT MESS CLEAN THIS UP
+  #   @seasons = Season.all
+  #   if !params[:season].blank? #if season selected from dropdown menu selected, show plants by season
+  #     if params[:user_id].to_i == current_user.id #safeguards against accessing other user's pages
+  #       @plants = Plant.by_season_with_user(params[:season], params[:user_id]) #invoke scope method from Plant model
+  #     elsif !params[:user_id]
+  #       @plants = Plant.by_season(params[:season])
+  #     end
+  #   elsif params[:user_id].to_i == current_user.id #if accessing plant index thru nested resource users/:id/plants, show user's plants only
+  #     @plants = User.find_by(id: params[:user_id]).plants
+  #   elsif !params[:user_id]
+  #     @plants = Plant.all
+  #   else
+  #     render '/users/error'
+  #   end
+  # end
+
+  def index
     @seasons = Season.all
     if !params[:season].blank? #if season selected from dropdown menu selected, show plants by season
-      if params[:user_id].to_i == current_user.id #safeguards against accessing other user's pages
+      if params[:user_id]
         @plants = Plant.by_season_with_user(params[:season], params[:user_id]) #invoke scope method from Plant model
-      elsif !params[:user_id]
+      else
         @plants = Plant.by_season(params[:season])
-      # else
-      #   render '/users/error'
       end
-    elsif params[:user_id].to_i == current_user.id #if accessing plant index thru nested resource users/:id/plants, show user's plants only
-      @plants = User.find_by(id: params[:user_id]).plants
-    elsif !params[:user_id]
-      @plants = Plant.all
+    elsif params[:user_id]
+      @plants = User.find_by(id: params[:user_id]).plants if params[:user_id]
     else
-      render '/users/error'
+      @plants = Plant.all
     end
+
   end
 
   def new
@@ -35,11 +51,7 @@ class PlantsController < ApplicationController
   end
 
   def show
-    if params[:user_id].to_i == current_user.id || !params[:user_id]
-      @plant = Plant.find_by(id: params[:id])
-    else
-      render '/users/error'
-    end
+    @plant = Plant.find_by(id: params[:id])
   end
 
   def edit
