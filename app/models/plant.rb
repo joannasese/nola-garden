@@ -9,6 +9,9 @@ class Plant < ApplicationRecord
   validates_presence_of :common_name, :variety, :seasons
   validates_uniqueness_of :common_name, scope: :variety
 
+  has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
+  do_not_validate_attachment_file_type :image
+
   # ALTERNATIVE WAY TO WRITE SCOPES
   # def self.by_season_with_user(season_id, user_id)
   #   joins(:plant_seasons).where("season_id = ?", season_id).where("user_id = ?", user_id)
@@ -23,16 +26,6 @@ class Plant < ApplicationRecord
         tag = Tag.find_or_create_by(tag_attribute)
         self.tags << tag
       end
-    end
-  end
-
-  def tagged #not working
-    if !self.tags.empty?
-      tags.each do |tag|
-        tag.name
-      end
-    else
-      "No tags yet!"
     end
   end
 
