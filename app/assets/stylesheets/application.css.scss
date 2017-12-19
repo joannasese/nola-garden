@@ -58,11 +58,7 @@ div.user-dashboard {
   color: #FFFFFF;
 }
 
-#content-container {
-  max-width: 100%;
-}
-
-div.menu-container {
+#menu-container {
   width: 25%;
   margin: auto;
   border: 3px solid #73AD21;
@@ -71,7 +67,7 @@ div.menu-container {
   // display: inline-block;
 }
 
-div.main-content {
+#main-content {
   width: 75%;
   margin: auto;
   text-align: center;

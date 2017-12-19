@@ -11,7 +11,7 @@
 
   <body>
     <div id="main-container" class="container">
-      <div class="row">
+      <div>
         <% if !current_user %>
           <div class="title">
             <%= link_to 'New Orleans Plant Library', '/', class: "title-link" %>
@@ -25,19 +25,17 @@
           </div>
         <% end %>
       </div>
-      <div class="row">
+      <div>
         <% if !current_user %>
           <div class="login-signup">
             <%= yield %>
           </div>
         <% else %>
-          <div class="menu-container"><%= yield :menu%></div><div class="main-content"><%= yield %></div>
+          <div id="menu-container"><%= yield :menu%></div>
+          <div id="main-content"><%= yield %></div>
         <% end %>
       </div>
     </div>
 
-    <div id="content-container">
-
-    </div>
   </body>
 </html>
