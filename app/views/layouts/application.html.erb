@@ -31,12 +31,7 @@
             <%= yield %>
           </div>
         <% else %>
-          <div class="menu-container">
-              <%= yield %>
-          </div>
-          <div class="main-content">
-              <%= yield %>
-          </div>
+          <div class="menu-container"><%= yield :menu%></div><div class="main-content"><%= yield %></div>
         <% end %>
       </div>
     </div>

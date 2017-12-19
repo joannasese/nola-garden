@@ -63,19 +63,28 @@ div.user-dashboard {
 }
 
 div.menu-container {
-  width: 15%;
+  width: 25%;
   margin: auto;
   border: 3px solid #73AD21;
   padding: 30px;
   float: left;
+  // display: inline-block;
 }
 
 div.main-content {
-  max-width: 85%;
+  width: 75%;
   margin: auto;
   text-align: center;
   padding: 30px;
   background-color: #FFFBF3; //eggshell
   border: 3px solid #73AD21;
   float: left;
+  // display: inline-block;
+}
+
+img.main-photo{
+  // float: right;
+  border-radius: 20px;
+  width: 50%;
+  height: auto;
 }

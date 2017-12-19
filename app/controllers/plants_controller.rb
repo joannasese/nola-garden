@@ -3,6 +3,7 @@ class PlantsController < ApplicationController
   skip_before_action :authorize, except: [:index, :show, :edit]
 
   def index
+    @user = current_user
     @seasons = Season.all
     if !params[:season].blank? #if season selected from dropdown menu selected, show plants by season
       if params[:user_id]
@@ -19,6 +20,7 @@ class PlantsController < ApplicationController
 
   def new
     @plant = Plant.new
+    @user = current_user
   end
 
   def create
@@ -32,6 +34,7 @@ class PlantsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @plant = Plant.find_by(id: params[:id])
   end
 

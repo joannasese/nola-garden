@@ -1,0 +1,13 @@
+<div class="row">
+  <div>
+    <p class="contribute"><%= link_to 'Contribute a plant', '../plants/new', class: 'btn btn-lg' %><br>
+  </div>
+
+  <div>
+    <p><%= link_to 'Browse plants', plants_path, class: 'btn btn-lg' %><br>
+  </div>
+
+  <div>
+    <p><%= link_to 'My Plants', user_plants_path(@user), class: 'btn btn-lg' %><br>
+  </div>
+</div>

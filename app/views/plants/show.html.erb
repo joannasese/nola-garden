@@ -1,5 +1,9 @@
 <!-- PLANT SHOW PAGE /plants/:id OR /users/:id/plants/:id-->
 
+<% content_for :menu do %>
+  <%= render "users/menu", user: @user %>
+<% end %>
+
 <div class="plant-title">
   <h2 id="plant-title"><%= @plant.variety %></h2>
   <% if params[:user_id] %>
