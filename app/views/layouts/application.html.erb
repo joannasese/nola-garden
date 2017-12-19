@@ -13,22 +13,32 @@
     <div id="main-container" class="container">
       <div class="row">
         <% if !current_user %>
-          <h1 class="title">
-            <%= link_to 'New Orleans Plant Library', '/', class: "main-link" %>
-          </h1>
+          <div class="title">
+            <%= link_to 'New Orleans Plant Library', '/', class: "title-link" %>
+          </div>
         <% else %>
-          <h1 class="title">
-            <%= link_to 'New Orleans Plant Library', user_path(current_user), class: "main-link" %>
-          </h1>
+          <div class="title">
+            <%= link_to 'New Orleans Plant Library', user_path(current_user), class: "title-link" %>
+          </div>
           <div class="user-dashboard">
             Hello <%= current_user.name %> | <%= link_to 'Logout', '/logout', class: "main-link" %>
           </div>
         <% end %>
+      </div>
+    </div>
 
-        <div class="content">
+    <div id="content-container" class="container">
+      <div class="menu">
+        <div style="float: left">
+          <%= yield %>
+        </div>
+      </div>
+      <div class="content">
+        <div style="float: left">
           <%= yield %>
         </div>
       </div>
     </div>
+
   </body>
 </html>
