@@ -18,8 +18,9 @@
 
 /* universal */
 
-a.main-link {
-  color: #FFFFFF;
+.login-signup {
+  text-align: center;
+  padding-top: 30px;
 }
 
 a:hover {
@@ -31,7 +32,11 @@ a:hover {
   font-weight: bold;
 }
 
-.title {
+#main-container {
+  max-width: 100%;
+}
+
+div.title {
   background-color: #127F4F; //darkish green
   font-family: 'Bevan', cursive;
   font-size: 18pt;
@@ -40,7 +45,7 @@ a:hover {
   padding-bottom: 30px;
 }
 
-.user-dashboard {
+div.user-dashboard {
   color: #FFFFFF;
   text-align: right;
   background-color: #ED8BAF; //pink
@@ -53,18 +58,24 @@ a:hover {
   color: #FFFFFF;
 }
 
-.content {
+#content-container {
+  max-width: 100%;
+}
+
+div.menu-container {
+  width: 15%;
+  margin: auto;
+  border: 3px solid #73AD21;
+  padding: 30px;
+  float: left;
+}
+
+div.main-content {
+  max-width: 85%;
+  margin: auto;
   text-align: center;
   padding: 30px;
   background-color: #FFFBF3; //eggshell
-}
-
-.menu {
-  padding: 30px;
-}
-
-#content-container {
-  max-width: 100%;
-  margin: auto;
   border: 3px solid #73AD21;
+  float: left;
 }
