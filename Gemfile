@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'jquery-rails'
+gem 'active_model_serializers'
 gem 'paperclip'
 gem 'omniauth-google-oauth2'
 gem 'bootstrap-sass', '~> 3.2.0'
