@@ -3,6 +3,24 @@ $(document).ready(function (){
   loadPlantIndex();
 })
 
+class Plant {
+  constructor(id, common_name, latin_name, variety, height, light, lifecycle, spacing, days_to_maturity, image, season_ids, tag_ids){
+    this.id = id
+    this.common_name = common_name
+    this.latin_name = latin_name
+    this.variety = variety
+    this.height = height
+    this.light = light
+    this.lifecycle = lifecycle
+    this.spacing = spacing
+    this.days_to_maturity = days_to_maturity
+    this.image = image
+    this.season_ids = season_ids
+    this.tag_ids = tag_ids
+  }
+}
+
+
 function testComment(){
   $('.title-link').on('click', function(event){
     console.log('Hey test')
@@ -13,9 +31,9 @@ function testComment(){
 // JS TEMPLATES
 // 1. Loads list of plants plants#index
 function loadPlantIndex(){
-  $('a.plant-index').on('click', function(event){
-    console.log('Clicked plants button');
-    $('#main-content').append("Hey there." + "<br>");
+  $('a.all-plant-index').on('click', function(event){
     event.preventDefault();
+    console.log(Plant.all);
+    $('#main-content').append("Hey there." + "<br>");
   })
 }

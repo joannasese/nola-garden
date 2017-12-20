@@ -16,6 +16,10 @@ class PlantsController < ApplicationController
     else
       @plants = Plant.all
     end
+    respond_to do |format|
+     format.html
+     format.json { render json: @plants}
+    end
   end
 
   def new
