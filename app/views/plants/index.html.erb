@@ -24,13 +24,11 @@
   <% end %>
 <% end %>
 
-<div>
+<div class="plant-list">
   <% if params[:user_id] %>
-    <div class="plant-list">
-      <% @plants.sort{|a,b| a.common_name.downcase <=> b.common_name.downcase}.each do |plant| %>
-        <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant), class: "content-link" %><br>
-      <% end %>
-    </div>
+    <% @plants.sort{|a,b| a.common_name.downcase <=> b.common_name.downcase}.each do |plant| %>
+      <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant), class: "content-link" %><br>
+    <% end %>
     <p>
     <p><%= link_to "Submit a new plant", new_user_plant_path, class: 'btn' %></p>
   <% else %>

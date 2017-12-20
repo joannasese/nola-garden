@@ -10,11 +10,12 @@ function testComment(){
     event.preventDefault();
   })
 }
-
+// JS TEMPLATES
+// 1. Loads list of plants plants#index
 function loadPlantIndex(){
-  $('.plant-index').on('click', function(event){
+  $('a.plant-index').on('click', function(event){
     console.log('Clicked plants button');
-    $('.plant-list').append("Hey there.");
+    $('#main-content').append("Hey there." + "<br>");
     event.preventDefault();
   })
 }
