@@ -1,3 +1,3 @@
 $(document).ready(function() {
-  // code to be executed goes here
+  $("#main-content").append("Can you see me? I was added with jQuery.")
 });
