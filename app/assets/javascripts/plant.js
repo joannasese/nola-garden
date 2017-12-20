@@ -1,3 +1,7 @@
+$(document).ready(function () {
+  testComment();
+})
+
 function testComment(){
   $('.title-link').on('click', function(event){
     console.log('Hey')
