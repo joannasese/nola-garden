@@ -1,16 +1,20 @@
-$(document).ready(function () {
+$(document).ready(function (){
   testComment();
+  loadPlantIndex();
 })
 
 function testComment(){
   $('.title-link').on('click', function(event){
-    console.log('Hey')
-    $("#menu-container").append("Can you see me? I was added with jQuery.");
+    console.log('Hey test')
+    $('#menu-container').append("Can you see me? I was added with jQuery.");
     event.preventDefault();
   })
 }
-// })
-// $('#my-link').click(function (event) {
-//   alert('Hooray!');
-//   event.preventDefault(); // Prevent link from following its href
-// });
+
+function loadPlantIndex(){
+  $('.plant-index').on('click', function(event){
+    console.log('Clicked plants button');
+    $('.plant-list').append("Hey there.");
+    event.preventDefault();
+  })
+}
