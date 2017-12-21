@@ -42,7 +42,7 @@ $(function(){
   $(".js-more").on('click', function(){
     var id = $(this).data("id");
     $.get("/plants/" + id + "/details", function(data) {
-      $("#details-" + id).text(data);
+      // $("#details-" + id).text(data);
       $("#details").text(data);
       console.log(data)
     })
