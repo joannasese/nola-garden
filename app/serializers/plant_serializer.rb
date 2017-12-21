@@ -8,4 +8,6 @@ class PlantSerializer < ActiveModel::Serializer
   :spacing,
   :days_to_maturity,
   :image
+
+  belongs_to :user
 end

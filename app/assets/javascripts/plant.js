@@ -1,7 +1,7 @@
 $(document).ready(function (){
-  testComment();
+  // testComment();
   // loadPlantIndex();
-  index();
+  // index();
   nextPlant();
 })
 
@@ -22,49 +22,54 @@ class Plant {
   }
 }
 
-
-function testComment(){
-  $('.title-link').on('click', function(event){
-    console.log('Hey test')
-    $('#menu-container').append("Can you see me? I was added with jQuery.");
-    event.preventDefault();
-  })
-}
-// JS TEMPLATES
-// 1. Loads list of plants plants#index
-// function loadPlantIndex(){
-//   $('a.all-plant-index').on('click', function(event){
+//
+// function testComment(){
+//   $('.title-link').on('click', function(event){
+//     console.log('Hey test')
+//     $('#menu-container').append("Can you see me? I was added with jQuery.");
 //     event.preventDefault();
-//     console.log(this.data);
-//     $('#main-content').append("Hey there." + "<br>");
 //   })
 // }
-
-// function indexDetails(){
-//   //instead of this, just append links to plant show pages
-//   $(".js-details").on('click', function(event){
-//     var id = $(this).data("id");
-//     $.getJSON("/plants/" + id + "/details", function(data){
-//       // $("#details").text(data);
-//       $("#details").html(data["id"]);
+// // JS TEMPLATES
+// // 1. Loads list of plants plants#index
+// // function loadPlantIndex(){
+// //   $('a.all-plant-index').on('click', function(event){
+// //     event.preventDefault();
+// //     console.log(this.data);
+// //     $('#main-content').append("Hey there." + "<br>");
+// //   })
+// // }
+//
+// // function indexDetails(){
+// //   //instead of this, just append links to plant show pages
+// //   $(".js-details").on('click', function(event){
+// //     var id = $(this).data("id");
+// //     $.getJSON("/plants/" + id + "/details", function(data){
+// //       // $("#details").text(data);
+// //       $("#details").html(data["id"]);
+// //       console.log(data)
+// //     })
+// //     event.preventDefault();
+// //   })
+// // }
+//
+// function index(){
+//   $("a.my-plant-index").on('click', function(event){
+//     var userId = $(this).data("user.id")
+//     var id = $(this).data("id")
+//     // $.getJSON("/plants", function(data){
+//     $.getJSON("/users/" + userId + "/plants", function(data){
 //       console.log(data)
+//       $.each(data, function(index, data){
+//         // var link = user_plant_path(data)
+//         $(".plant-list").append(data["common_name"] + ", " + data["variety"] + "<br>");
+//         //how to create links from index items?
+//       })
+//       return false;
 //     })
 //     event.preventDefault();
 //   })
 // }
-
-function index(){
-  $(".my-plant-index").on('click', function(event){
-
-    $.getJSON("/plants", function(data){
-      $.each(data, function(index, data){
-        $(".plant-list").append(data["common_name"] + "<br>")
-      })
-
-    })
-event.preventDefault();
-  })
-}
 
 function nextPlant(){
   $(".js-next").on('click', function(event){

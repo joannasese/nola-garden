@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'users#index'
 
   get '/plants/:id/details', to: 'plants#details'
+  get '/users/:id/plants', to: 'plants#index'
   get '/plants', to: 'plants#index'
 
 end
