@@ -57,7 +57,9 @@ class PlantsController < ApplicationController
 
   def details
     plant = Plant.find(params[:id])
-    render plain: plant.common_name
+    # render plain: plant.common_name
+    render json: PlantSerializer.serialize(plant)
+    # render json: plant.to_json
   end
 
   private

@@ -41,9 +41,9 @@ function loadPlantIndex(){
 $(function(){
   $(".js-more").on('click', function(){
     var id = $(this).data("id");
-    $.get("/plants/" + id + "/details", function(data) {
-      // $("#details-" + id).text(data);
-      $("#details").text(data);
+    $.getJSON("/plants/" + id + "/details", function(data) {
+      // $("#details").text(data);
+      $("#details").html(data["id"]);
       console.log(data)
     })
   })
