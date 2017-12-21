@@ -1,6 +1,8 @@
 $(document).ready(function (){
   testComment();
-  loadPlantIndex();
+  // loadPlantIndex();
+  indexDetails();
+  nextPlant();
 })
 
 class Plant {
@@ -30,21 +32,33 @@ function testComment(){
 }
 // JS TEMPLATES
 // 1. Loads list of plants plants#index
-function loadPlantIndex(){
-  $('a.all-plant-index').on('click', function(event){
-    event.preventDefault();
-    console.log(this.data);
-    $('#main-content').append("Hey there." + "<br>");
-  })
-}
+// function loadPlantIndex(){
+//   $('a.all-plant-index').on('click', function(event){
+//     event.preventDefault();
+//     console.log(this.data);
+//     $('#main-content').append("Hey there." + "<br>");
+//   })
+// }
 
-$(function(){
-  $(".js-more").on('click', function(){
+function indexDetails(){
+  $(".js-details").on('click', function(){
     var id = $(this).data("id");
-    $.getJSON("/plants/" + id + "/details", function(data) {
+    $.getJSON("/plants/" + id + "/details", function(data){
       // $("#details").text(data);
       $("#details").html(data["id"]);
       console.log(data)
     })
   })
-})
+}
+
+function nextPlant(){
+  $(".js-next").on('click', function(){
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    console.log(nextId)
+    $.getJSON("/plants/" + nextId + "/details", function(data){
+      $(".plant-photo").load(data["image"]);
+      $(".common-name").text(data["common_name"]);
+      $(".js-next").attr("data-id", data["id"]);
+    })
+  })
+}
