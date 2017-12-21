@@ -41,24 +41,27 @@ function testComment(){
 // }
 
 function indexDetails(){
-  $(".js-details").on('click', function(){
+  $(".js-details").on('click', function(event){
     var id = $(this).data("id");
     $.getJSON("/plants/" + id + "/details", function(data){
       // $("#details").text(data);
       $("#details").html(data["id"]);
       console.log(data)
     })
+    event.preventDefault();
   })
 }
 
 function nextPlant(){
-  $(".js-next").on('click', function(){
+  $(".js-next").on('click', function(event){
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    console.log(nextId)
-    $.getJSON("/plants/" + nextId + "/details", function(data){
-      $(".plant-photo").load(data["image"]);
+    $.get("/plants/" + nextId + ".json", function(data){
+        console.log(data)
+      $("#plant-title").text(data["variety"]);
+      $(".plant-photo").attr("src", data["image"]);
       $(".common-name").text(data["common_name"]);
       $(".js-next").attr("data-id", data["id"]);
     })
+    event.preventDefault();
   })
 }
