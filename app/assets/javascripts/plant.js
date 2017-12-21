@@ -1,7 +1,7 @@
 $(document).ready(function (){
   testComment();
   // loadPlantIndex();
-  indexDetails();
+  index();
   nextPlant();
 })
 
@@ -40,16 +40,29 @@ function testComment(){
 //   })
 // }
 
-function indexDetails(){
-  //instead of this, just append links to plant show pages
-  $(".js-details").on('click', function(event){
-    var id = $(this).data("id");
-    $.getJSON("/plants/" + id + "/details", function(data){
-      // $("#details").text(data);
-      $("#details").html(data["id"]);
-      console.log(data)
+// function indexDetails(){
+//   //instead of this, just append links to plant show pages
+//   $(".js-details").on('click', function(event){
+//     var id = $(this).data("id");
+//     $.getJSON("/plants/" + id + "/details", function(data){
+//       // $("#details").text(data);
+//       $("#details").html(data["id"]);
+//       console.log(data)
+//     })
+//     event.preventDefault();
+//   })
+// }
+
+function index(){
+  $(".my-plant-index").on('click', function(event){
+
+    $.getJSON("/plants", function(data){
+      $.each(data, function(index, data){
+        $(".plant-list").append(data["common_name"] + "<br>")
+      })
+
     })
-    event.preventDefault();
+event.preventDefault();
   })
 }
 
