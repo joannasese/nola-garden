@@ -1,13 +1,11 @@
 class PlantSerializer < ActiveModel::Serializer
-  attributes :id, :common_name, :variety
-
-  def self.serialize(plant)
-
-    serialized_plant = '{'
-    serialized_plant += '"id": ' + plant.id.to_s 
-
-    serialized_plant += '}'
-  end
-
-
+  attributes :common_name,
+  :latin_name,
+  :variety,
+  :height,
+  :light,
+  :lifecycle,
+  :spacing,
+  :days_to_maturity,
+  :image
 end

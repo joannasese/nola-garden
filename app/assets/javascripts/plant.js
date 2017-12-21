@@ -41,6 +41,7 @@ function testComment(){
 // }
 
 function indexDetails(){
+  //instead of this, just append links to plant show pages
   $(".js-details").on('click', function(event){
     var id = $(this).data("id");
     $.getJSON("/plants/" + id + "/details", function(data){
@@ -54,14 +55,18 @@ function indexDetails(){
 
 function nextPlant(){
   $(".js-next").on('click', function(event){
+    event.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/plants/" + nextId + ".json", function(data){
-        console.log(data)
+    $.getJSON("/plants/" + nextId + "/details", function(data){
+    // $.get("/plants/" + nextId + ".json", function(data){
+    // NEXT DOES NOT WORK PAST ID 2 WITH .JSON
+        console.log(nextId)
       $("#plant-title").text(data["variety"]);
       $(".plant-photo").attr("src", data["image"]);
-      $(".common-name").text(data["common_name"]);
+      // $(".common-name").text(data["common_name"]);
+      // $(".latin-name").text(data["latin_name"]);
+      // $(".lifecycle").text(data["lifecycle"]);
       $(".js-next").attr("data-id", data["id"]);
     })
-    event.preventDefault();
   })
 }
