@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create_with_google'
   get '/auth/failure', to: 'users#index'
 
+  get '/plants/:id/details', to: 'plants#details'
+
 end

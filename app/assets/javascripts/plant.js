@@ -33,7 +33,18 @@ function testComment(){
 function loadPlantIndex(){
   $('a.all-plant-index').on('click', function(event){
     event.preventDefault();
-    console.log(Plant.all);
+    console.log(this.data);
     $('#main-content').append("Hey there." + "<br>");
   })
 }
+
+$(function(){
+  $(".js-more").on('click', function(){
+    var id = $(this).data("id");
+    $.get("/plants/" + id + "/details", function(data) {
+      $("#details-" + id).text(data);
+      $("#details").text(data);
+      console.log(data)
+    })
+  })
+})

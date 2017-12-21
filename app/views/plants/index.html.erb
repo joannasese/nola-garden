@@ -4,6 +4,10 @@
   <%= render "users/menu", user: @user %>
 <% end %>
 
+<!-- <% @plants.each do |plant| %>
+  <%= render partial: "plant", locals: {plant: plant} %>
+<% end %> -->
+
 <!-- seems WET but not sure how to DRY it up -->
 <% if params[:user_id] %>
   <h3>My Plants</h3>
@@ -27,7 +31,8 @@
 <div class="plant-list">
   <% if params[:user_id] %>
     <% @plants.sort{|a,b| a.common_name.downcase <=> b.common_name.downcase}.each do |plant| %>
-      <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant), class: "content-link" %><br>
+      <!-- <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant), class: "content-link" %><br> -->
+      <%= render partial: "plant", locals: {plant: plant} %>
     <% end %>
     <p>
     <p><%= link_to "Submit a new plant", new_user_plant_path, class: 'btn' %></p>
@@ -39,3 +44,5 @@
     <p><%= link_to "Submit a new plant", new_plant_path, class: 'btn' %></p>
   <% end %>
 </div>
+
+<div id="details">Details go here</div>
