@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :sessions
   resources :users
 
-  # nested resource for plants
+  # nested resource for plants /users/:id/plants
   resources :users do
     resources :plants
   end

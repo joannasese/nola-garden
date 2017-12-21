@@ -86,5 +86,6 @@ function nextPlant(){
       // $(".lifecycle").text(data["lifecycle"]);
       $(".js-next").attr("data-id", data["id"]);
     })
+    return false;
   })
 }
