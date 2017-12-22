@@ -6,9 +6,9 @@
   <%= form_tag(user_plants_path, method: "get") do %>
     <p>
     <%= select_tag "season", options_from_collection_for_select(@seasons, "id", "season"), prompt: "All seasons", class: 'btn' %>
-    <!-- SYNTAX PULLED FROM https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/options_from_collection_for_select -->
     <%= submit_tag "Filter", class: 'btn' %>
     </p>
+    <!-- SYNTAX PULLED FROM https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/options_from_collection_for_select -->
   <% end %>
 <% else %>
   <h3>All Plants:</h3>
@@ -21,9 +21,8 @@
 <% end %>
 
 <!-- PLANT LIST AND SUBMIT BUTTON -->
-<div>
+<div id="plant-list">
   <% if params[:user_id] %>
-    <!-- <div class="plant-list"></div> -->
     <% @plants.sort{|a,b| a.common_name.downcase <=> b.common_name.downcase}.each do |plant| %>
       <%= link_to "#{plant.common_name}, #{plant.variety}", user_plant_path(current_user, plant), class: "content-link" %><br>
     <% end %>

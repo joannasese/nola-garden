@@ -1,10 +1,17 @@
-$(document).ready(function (){
-  // testComment();
-  // loadPlantIndex();
-  // index();
+$(document).on('turbolinks:load', function() {
+
   allPlants();
   nextPlant();
-})
+
+});
+
+// $(document).ready(function (){
+//   // testComment();
+//   // loadPlantIndex();
+//   // index();
+//   allPlants();
+//   nextPlant();
+// })
 
 class Plant {
   constructor(id, common_name, latin_name, variety, height, light, lifecycle, spacing, days_to_maturity, image, season_ids, tag_ids){
@@ -58,8 +65,8 @@ class Plant {
 //   $("a.my-plant-index").on('click', function(event){
 //     var userId = $(this).data("user.id")
 //     var id = $(this).data("id")
-//     // $.getJSON("/plants", function(data){
-//     $.getJSON("/users/" + userId + "/plants", function(data){
+//     $.getJSON("/plants", function(data){
+//     // $.getJSON("/users/" + userId + "/plants", function(data){
 //       console.log(data)
 //       $.each(data, function(index, data){
 //         // var link = user_plant_path(data)
