@@ -81,9 +81,10 @@ function nextPlant(){
         console.log(nextId)
       $("#plant-title").text(data["variety"]);
       $(".plant-photo").attr("src", data["image"]);
-      // $(".common-name").text(data["common_name"]);
-      // $(".latin-name").text(data["latin_name"]);
-      // $(".lifecycle").text(data["lifecycle"]);
+      console.log(data["image.url"])
+      $(".common-name").text(data["common_name"]);
+      $(".latin-name").text(data["latin_name"]);
+      $(".lifecycle").text(data["lifecycle"]);
       $(".js-next").attr("data-id", data["id"]);
     })
     return false;
