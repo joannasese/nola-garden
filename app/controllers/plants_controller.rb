@@ -47,6 +47,7 @@ class PlantsController < ApplicationController
   end
 
   def edit
+    @user = current_user
     @plant = Plant.find_by(id: params[:id])
   end
 

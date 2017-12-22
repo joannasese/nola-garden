@@ -1,3 +1,8 @@
+<!-- LEFTSIDE MENU -->
+<% content_for :menu do %>
+  <%= render "users/menu", user: @user %>
+<% end %>
+
 <div class="plant-title">
   <h3><%= @plant.variety %></h3>
   <% if params[:user_id] %>
