@@ -2,6 +2,7 @@ $(document).ready(function (){
   // testComment();
   // loadPlantIndex();
   // index();
+  allPlants();
   nextPlant();
 })
 
@@ -70,6 +71,14 @@ class Plant {
 //     event.preventDefault();
 //   })
 // }
+
+function allPlants(){
+  $("#all-plant-index").on('click', '.all-plants', function(event){
+    alert("I've been hijacked!");
+    console.log("I've been hijacked!")
+    event.preventDefault();
+  })
+}
 
 function nextPlant(){
   $(".js-next").on('click', function(event){
