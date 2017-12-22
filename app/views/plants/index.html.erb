@@ -1,10 +1,5 @@
 <!-- PLANT INDEX /plants OR /user/:id/plants -->
 
-<!-- LEFTSIDE MENU -->
-<% content_for :menu do %>
-  <%= render "users/menu", user: @user %>
-<% end %>
-
 <!-- TITLE AND SEASONS DROP DOWN -->
 <% if params[:user_id] %>
   <h3>My Plants</h3>

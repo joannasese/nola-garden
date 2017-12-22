@@ -33,7 +33,10 @@
             <%= yield %>
           </div>
         <% else %>
-          <div id="menu-container"><%= yield :menu%></div>
+          <!-- <div id="menu-container"><%= yield :menu%></div> -->
+          <div id="menu-container">
+            <%= render "users/menu", user: current_user %>
+          </div>
           <div id="main-content"><%= yield %></div>
         <% end %>
       </div>
