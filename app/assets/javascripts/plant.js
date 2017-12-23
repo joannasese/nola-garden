@@ -51,9 +51,14 @@ function myPlants(){
       method: "GET",
       url: this.href,
     }).done(function(data){
-      $(".page-title").empty().append("My Plants")
-      $(".main-content").empty().append("hi")
+      // $(".page-title").empty().append("My Plants")
+      // $(".main-content").empty().append("hi")
       // $(".plant-list").append("plants")
+      // $(".main-content").replaceWith(data)
+      $(".page-title").load(this.href + " .page-title")
+      $(".filter").load("/users/1/plants .filter")
+      $(".test").load("/users/1/plants .test")
+      // $(".main-content").replaceWith("<div class='test'></div>")
     })
     event.preventDefault();
   })

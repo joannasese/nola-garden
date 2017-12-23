@@ -1,3 +1,4 @@
+<div class="all">
 <!-- PLANT INDEX /plants OR /user/:id/plants -->
 <!-- TITLE AND SEASONS DROP DOWN -->
 <% if params[:user_id] %>
@@ -21,7 +22,7 @@
 <% end %>
 
 <!-- PLANT LIST AND SUBMIT BUTTON -->
-<div>
+<div class="test">
   <% if params[:user_id] %>
     <div class="main-content">
       <% @plants.sort{|a,b| a.common_name.downcase <=> b.common_name.downcase}.each do |plant| %>
@@ -41,4 +42,4 @@
   <% end %>
 </div>
 
-<div id="details">Details go here</div>
+</div>

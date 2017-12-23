@@ -1,7 +1,10 @@
+<div class="all">
 <!-- <%= stylesheet_link_tag "application" %> -->
 <h3 class="page-title">Submit a Plant</h3>
 
-<div class="main-content">
+<div class="filter"></div>
+
+<div class="test">
   <h6>*Required field</h6>
   <!-- ERROR MESSAGES -->
   <% if @plant.errors.any? %>
@@ -14,4 +17,5 @@
   <% end %>
 
   <%= render "form", plant: @plant %>
+</div>
 </div>
