@@ -1,15 +1,17 @@
 <!-- <%= stylesheet_link_tag "application" %> -->
+<h3 class="page-title">Submit a Plant</h3>
 
-<h3>Submit a Plant</h3>
-<h6>*Required field</h6>
-<!-- ERROR MESSAGES -->
-<% if @plant.errors.any? %>
-  <div class="error_explanation">
-    <%= pluralize(@plant.errors.count, "error") %> prohibited this plant from being submitted:<br>
-    <% @plant.errors.full_messages.each do |msg| %>
-      <%= msg %><br>
-    <% end %>
-  </div>
-<% end %>
+<div class="main-content">
+  <h6>*Required field</h6>
+  <!-- ERROR MESSAGES -->
+  <% if @plant.errors.any? %>
+    <div class="error_explanation">
+      <%= pluralize(@plant.errors.count, "error") %> prohibited this plant from being submitted:<br>
+      <% @plant.errors.full_messages.each do |msg| %>
+        <%= msg %><br>
+      <% end %>
+    </div>
+  <% end %>
 
-<%= render "form", plant: @plant %>
+  <%= render "form", plant: @plant %>
+</div>

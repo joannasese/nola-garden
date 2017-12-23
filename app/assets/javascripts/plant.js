@@ -1,17 +1,9 @@
 $(document).on('turbolinks:load', function() {
-
-  allPlants();
+  // allPlants();
+  myPlants();
   nextPlant();
 
 });
-
-// $(document).ready(function (){
-//   // testComment();
-//   // loadPlantIndex();
-//   // index();
-//   allPlants();
-//   nextPlant();
-// })
 
 class Plant {
   constructor(id, common_name, latin_name, variety, height, light, lifecycle, spacing, days_to_maturity, image, season_ids, tag_ids){
@@ -38,15 +30,7 @@ class Plant {
 //     event.preventDefault();
 //   })
 // }
-// // JS TEMPLATES
-// // 1. Loads list of plants plants#index
-// // function loadPlantIndex(){
-// //   $('a.all-plant-index').on('click', function(event){
-// //     event.preventDefault();
-// //     console.log(this.data);
-// //     $('#main-content').append("Hey there." + "<br>");
-// //   })
-// // }
+
 //
 // // function indexDetails(){
 // //   //instead of this, just append links to plant show pages
@@ -61,23 +45,18 @@ class Plant {
 // //   })
 // // }
 //
-// function index(){
-//   $("a.my-plant-index").on('click', function(event){
-//     var userId = $(this).data("user.id")
-//     var id = $(this).data("id")
-//     $.getJSON("/plants", function(data){
-//     // $.getJSON("/users/" + userId + "/plants", function(data){
-//       console.log(data)
-//       $.each(data, function(index, data){
-//         // var link = user_plant_path(data)
-//         $(".plant-list").append(data["common_name"] + ", " + data["variety"] + "<br>");
-//         //how to create links from index items?
-//       })
-//       return false;
-//     })
-//     event.preventDefault();
-//   })
-// }
+function myPlants(){
+  $("a.my-plant-index").on('click', function(event){
+    $.ajax({
+      method: "GET",
+      url: this.href,
+    }).done(function(data){
+      $(".page-title").empty().append("My Plants")
+      $(".plant-list").empty().append("hi")
+    })
+    event.preventDefault();
+  })
+}
 
 function allPlants(){
   $("#all-plant-index").on('click', '.all-plants', function(event){
