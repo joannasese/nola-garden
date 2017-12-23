@@ -52,7 +52,8 @@ function myPlants(){
       url: this.href,
     }).done(function(data){
       $(".page-title").empty().append("My Plants")
-      $(".plant-list").empty().append("hi")
+      $(".main-content").empty().append("hi")
+      // $(".plant-list").append("plants")
     })
     event.preventDefault();
   })
