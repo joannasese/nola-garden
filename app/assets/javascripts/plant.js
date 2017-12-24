@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-  // allPlants();
+  allPlants();
   myPlants();
   nextPlant();
 
@@ -48,26 +48,30 @@ class Plant {
 function myPlants(){
   $("a.my-plant-index").on('click', function(event){
     $.get(this.href).done(function(data){
-      // $(".page-title").empty().append("My Plants")
       // $(".main-content").empty().append("hi")
       // $(".plant-list").append("plants")
       // $(".main-content").replaceWith(data)
       var url = $("a.my-plant-index").attr("href")
       $(".page-title").load(url + " .page-title")
       $(".filter").load(url + " .filter")
-      $(".main-content").load(url + " .main-content")
-      // populate main-content with jquery/active model serialization
+      $(".main-content").load(url + " .main-content").empty().append($(".plant-list"))
       $(".submit").load(url + " .submit")
-      $(".test").append(this.data)
+      // $(".test").load(url + " .main-content").empty().append($(".plant-list"))
     })
     event.preventDefault();
   })
 }
 
 function allPlants(){
-  $("#all-plant-index").on('click', '.all-plants', function(event){
-    alert("I've been hijacked!");
-    console.log("I've been hijacked!")
+  $(".all-plant-index").on('click', function(event){
+    $.get(this.href).done(function(data){
+      var url = $("a.all-plant-index").attr("href")
+      $(".page-title").load(url + " .page-title")
+      $(".filter").load(url + " .filter")
+      $(".main-content").load(url + " .main-content").empty().append($(".plant-list"))
+      $(".submit").load(url + " .submit")
+      // $(".test").load(url + " .main-content").empty().append($(".plant-list"))
+    })
     event.preventDefault();
   })
 }
