@@ -61,6 +61,7 @@ function myPlants(){
       $(".main-content").load(url + " .main-content")
       // populate main-content with jquery/active model serialization
       $(".submit").load(url + " .submit")
+      $(".test").append(this.data)
     })
     event.preventDefault();
   })
