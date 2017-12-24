@@ -1,8 +1,9 @@
 $(document).on('turbolinks:load', function() {
 // $(document).ready(function () {
   allPlants();
-  myPlants();
+  // myPlants();
   nextPlant();
+  test();
 });
 
 class Plant {
@@ -24,11 +25,19 @@ class Plant {
 
 function allPlants(){
   $(".all-plant-index").on('click', function(event){
-    $.get(this.href).done(function(data){
+    $.getJSON(this.href).done(function(json){
       var url = $("a.all-plant-index").attr("href")
       $(".page-title").load(url + " .page-title")
       $(".filter").load(url + " .filter")
-      $(".main-content").load(url + " .main-content").empty().append($(".plant-list"))
+
+      // $(".main-content").load(url + " .main-content").empty().append($(".plant-list"))
+
+      $(".main-content").empty();
+
+      json.forEach(function(plant){
+        $(".main-content").append(plant.common_name + "<br>")
+      })
+
       $(".submit").load(url + " .submit")
       console.log("jQuery allPlants")
     })
@@ -75,5 +84,24 @@ function nextPlant(){
       $(".js-next").attr("data-id", data["id"]);
     })
     return false;
+  })
+}
+
+function test(){
+  $("a.my-plant-index").on('click', function(event){
+    $.getJSON(this.href).done(function(json){
+      var url = $("a.my-plant-index").attr("href")
+      $(".page-title").load(url + " .page-title")
+      $(".filter").load(url + " .filter")
+
+      json.forEach(function(plant){
+        // $(".main-content").load(url + " .main-content").empty().append(plant.common_name)
+        $(".main-content").empty().append(plant.common_name + "<br>")
+      })
+
+      $(".submit").load(url + " .submit")
+
+    })
+    event.preventDefault();
   })
 }
