@@ -47,10 +47,7 @@ class Plant {
 //
 function myPlants(){
   $("a.my-plant-index").on('click', function(event){
-    $.ajax({
-      method: "GET",
-      url: this.href,
-    }).done(function(data){
+    $.get(this.href).done(function(data){
       // $(".page-title").empty().append("My Plants")
       // $(".main-content").empty().append("hi")
       // $(".plant-list").append("plants")
