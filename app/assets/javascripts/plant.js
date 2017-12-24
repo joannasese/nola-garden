@@ -1,8 +1,8 @@
 $(document).on('turbolinks:load', function() {
+// $(document).ready(function () {
   allPlants();
   myPlants();
   nextPlant();
-
 });
 
 class Plant {
@@ -22,29 +22,20 @@ class Plant {
   }
 }
 
-//
-// function testComment(){
-//   $('.title-link').on('click', function(event){
-//     console.log('Hey test')
-//     $('#menu-container').append("Can you see me? I was added with jQuery.");
-//     event.preventDefault();
-//   })
-// }
+function allPlants(){
+  $(".all-plant-index").on('click', function(event){
+    $.get(this.href).done(function(data){
+      var url = $("a.all-plant-index").attr("href")
+      $(".page-title").load(url + " .page-title")
+      $(".filter").load(url + " .filter")
+      $(".main-content").load(url + " .main-content").empty().append($(".plant-list"))
+      $(".submit").load(url + " .submit")
+      console.log("jQuery allPlants")
+    })
+    event.preventDefault();
+  })
+}
 
-//
-// // function indexDetails(){
-// //   //instead of this, just append links to plant show pages
-// //   $(".js-details").on('click', function(event){
-// //     var id = $(this).data("id");
-// //     $.getJSON("/plants/" + id + "/details", function(data){
-// //       // $("#details").text(data);
-// //       $("#details").html(data["id"]);
-// //       console.log(data)
-// //     })
-// //     event.preventDefault();
-// //   })
-// // }
-//
 function myPlants(){
   $("a.my-plant-index").on('click', function(event){
     $.get(this.href).done(function(data){
@@ -56,20 +47,11 @@ function myPlants(){
       $(".filter").load(url + " .filter")
       $(".main-content").load(url + " .main-content").empty().append($(".plant-list"))
       $(".submit").load(url + " .submit")
-      // $(".test").load(url + " .main-content").empty().append($(".plant-list"))
-    })
-    event.preventDefault();
-  })
-}
+      console.log("jQuery myPlants")
 
-function allPlants(){
-  $(".all-plant-index").on('click', function(event){
-    $.get(this.href).done(function(data){
-      var url = $("a.all-plant-index").attr("href")
-      $(".page-title").load(url + " .page-title")
-      $(".filter").load(url + " .filter")
-      $(".main-content").load(url + " .main-content").empty().append($(".plant-list"))
-      $(".submit").load(url + " .submit")
+      // $.each(data, function(index, plant){
+      //   $(".test").append(plant.common_name)
+      // })
       // $(".test").load(url + " .main-content").empty().append($(".plant-list"))
     })
     event.preventDefault();
