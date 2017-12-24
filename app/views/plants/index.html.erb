@@ -30,7 +30,9 @@
       <% end %>
     </div>
     <p>
-    <p><%= link_to "Submit a new plant", new_user_plant_path, class: 'btn' %></p>
+    <div class="submit">
+      <p><%= link_to "Submit a new plant", new_user_plant_path, class: 'btn' %></p>
+    </div>
   <% else %>
     <div class="main-content">
       <% @plants.sort{|a,b| a.common_name.downcase <=> b.common_name.downcase}.each do |plant| %>
@@ -38,7 +40,9 @@
       <% end %>
     </div>
     <p>
-    <p><%= link_to "Submit a new plant", new_plant_path, class: 'btn' %></p>
+    <div class="submit">
+      <p><%= link_to "Submit a new plant", new_plant_path, class: 'btn' %></p>
+    </div>
   <% end %>
 </div>
 

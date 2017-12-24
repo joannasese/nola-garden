@@ -4,7 +4,7 @@
 
 <div class="filter"></div>
 
-<div class="test">
+<div class="main-content">
   <h6>*Required field</h6>
   <!-- ERROR MESSAGES -->
   <% if @plant.errors.any? %>
@@ -17,5 +17,8 @@
   <% end %>
 
   <%= render "form", plant: @plant %>
+
 </div>
+<p>
+<div class="submit"></div>
 </div>

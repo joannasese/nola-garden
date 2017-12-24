@@ -55,14 +55,12 @@ function myPlants(){
       // $(".main-content").empty().append("hi")
       // $(".plant-list").append("plants")
       // $(".main-content").replaceWith(data)
-      var userId = $(this).data("user.id")
-      // var url = "/users/" + userId + "/plants"
       var url = $("a.my-plant-index").attr("href")
-      console.log(userId)
       $(".page-title").load(url + " .page-title")
-      $(".filter").load("/users/1/plants .filter")
-      $(".test").load("/users/1/plants .test")
-      // $(".main-content").replaceWith("<div class='test'></div>")
+      $(".filter").load(url + " .filter")
+      $(".main-content").load(url + " .main-content")
+      // populate main-content with jquery/active model serialization
+      $(".submit").load(url + " .submit")
     })
     event.preventDefault();
   })
