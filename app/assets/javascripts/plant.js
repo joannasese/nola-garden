@@ -6,22 +6,22 @@ $(document).on('turbolinks:load', function() {
   test();
 });
 
-class Plant {
-  constructor(id, common_name, latin_name, variety, height, light, lifecycle, spacing, days_to_maturity, image, season_ids, tag_ids){
-    this.id = id
-    this.common_name = common_name
-    this.latin_name = latin_name
-    this.variety = variety
-    this.height = height
-    this.light = light
-    this.lifecycle = lifecycle
-    this.spacing = spacing
-    this.days_to_maturity = days_to_maturity
-    this.image = image
-    this.season_ids = season_ids
-    this.tag_ids = tag_ids
-  }
-}
+// class Plant {
+//   constructor(id, common_name, latin_name, variety, height, light, lifecycle, spacing, days_to_maturity, image, season_ids, tag_ids){
+//     this.id = id
+//     this.common_name = common_name
+//     this.latin_name = latin_name
+//     this.variety = variety
+//     this.height = height
+//     this.light = light
+//     this.lifecycle = lifecycle
+//     this.spacing = spacing
+//     this.days_to_maturity = days_to_maturity
+//     this.image = image
+//     this.season_ids = season_ids
+//     this.tag_ids = tag_ids
+//   }
+// }
 
 function allPlants(){
   $(".all-plant-index").on('click', function(event){
@@ -30,10 +30,8 @@ function allPlants(){
       $(".page-title").load(url + " .page-title")
       $(".filter").load(url + " .filter")
 
-      // $(".main-content").load(url + " .main-content").empty().append($(".plant-list"))
-
       $(".main-content").empty();
-
+      //figure out how to sort and add link
       json.forEach(function(plant){
         $(".main-content").append(plant.common_name + "<br>")
       })
