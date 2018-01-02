@@ -1,9 +1,9 @@
 $(document).on('turbolinks:load', function() {
 // $(document).ready(function () {
   allPlants();
-  // myPlants();
+  myPlants();
   nextPlant();
-  test();
+  // test();
 });
 
 // class Plant {
@@ -33,7 +33,7 @@ function allPlants(){
       $(".main-content").empty();
       //figure out how to sort and add link
       json.forEach(function(plant){
-        $(".main-content").append(plant.common_name + "<br>")
+        $(".main-content").append(plant.common_name + ", " + plant.variety + "<br>")
       })
 
       $(".submit").load(url + " .submit")
@@ -49,6 +49,7 @@ function myPlants(){
       // $(".main-content").empty().append("hi")
       // $(".plant-list").append("plants")
       // $(".main-content").replaceWith(data)
+
       var url = $("a.my-plant-index").attr("href")
       $(".page-title").load(url + " .page-title")
       $(".filter").load(url + " .filter")
