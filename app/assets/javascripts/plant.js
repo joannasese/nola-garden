@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
 // $(document).ready(function () {
   allPlants();
-  myPlants();
+  // myPlants();
   nextPlant();
   // test();
 });
@@ -70,17 +70,26 @@ function nextPlant(){
   $(".js-next").on('click', function(event){
     event.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+
     $.getJSON("/plants/" + nextId + "/details", function(data){
     // $.get("/plants/" + nextId + ".json", function(data){
     // NEXT DOES NOT WORK PAST ID 2 WITH .JSON
-        console.log(nextId)
+      console.log(nextId)
       $("#plant-title").text(data["variety"]);
       $(".plant-photo").attr("src", data["image"]);
-      console.log(data["image.url"])
       $(".common-name").text(data["common_name"]);
       $(".latin-name").text(data["latin_name"]);
       $(".lifecycle").text(data["lifecycle"]);
       $(".js-next").attr("data-id", data["id"]);
+    }).fail(function(event){
+      $.getJSON("/plants/1/details", function(data){
+        $("#plant-title").text(data["variety"]);
+        $(".plant-photo").attr("src", data["image"]);
+        $(".common-name").text(data["common_name"]);
+        $(".latin-name").text(data["latin_name"]);
+        $(".lifecycle").text(data["lifecycle"]);
+        $(".js-next").attr("data-id", data["id"]);
+      })
     })
     return false;
   })
