@@ -85,6 +85,7 @@ function nextPlant(){
       $(".maturity").text(data["days_to_maturity"]);
       $(".light").text(data["light"]);
       $(".spacing").text(data["spacing"] + '"');
+      
       //work out how to display seasons and tags
       $(".seasons").text("Replacement")
       $(".tags").text("Replacement")
