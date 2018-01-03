@@ -105,7 +105,40 @@ function nextPlant(){
 }
 
 function previousPlant(){
+  $(".js-previous").on('click', function(event){
+    event.preventDefault();
+    var previousId = parseInt($(".js-previous").attr("data-id")) - 1;
 
+    $.getJSON("/plants/" + previousId + "/details", function(data){
+    // $.get("/plants/" + nextId + ".json", function(data){
+    // NEXT DOES NOT WORK PAST ID 2 WITH .JSON
+      console.log(previousId)
+      $("#plant-title").text(data["variety"]);
+      $(".plant-photo").attr("src", data["image"]);
+      $(".common-name").text(data["common_name"]);
+      $(".latin-name").text(data["latin_name"]);
+      $(".height").text(data["height"] + '"');
+      $(".lifecycle").text(data["lifecycle"]);
+      $(".maturity").text(data["days_to_maturity"]);
+      $(".light").text(data["light"]);
+      $(".spacing").text(data["spacing"] + '"');
+      $(".js-next").attr("data-id", data["id"]);
+    }).fail(function(event){
+      $.getJSON("/plants/1/details", function(data){
+        $("#plant-title").text(data["variety"]);
+        $(".plant-photo").attr("src", data["image"]);
+        $(".common-name").text(data["common_name"]);
+        $(".latin-name").text(data["latin_name"]);
+        $(".height").text(data["height"] + '"');
+        $(".lifecycle").text(data["lifecycle"]);
+        $(".maturity").text(data["days_to_maturity"]);
+        $(".light").text(data["light"]);
+        $(".spacing").text(data["spacing"] + '"');
+        $(".js-next").attr("data-id", data["id"]);
+      })
+    })
+    return false;
+  })
 }
 
 function test(){
