@@ -40,24 +40,24 @@
       <div class="lifecycle"><%= @plant.lifecycle %></div>
       <p>
       <div class="bold">Days to maturity:</div>
-      <%= @plant.days_to_maturity %>
+      <div class="maturity"><%= @plant.days_to_maturity %></div>
       <p>
       <div class="bold">Light requirements:</div>
-      <%= @plant.light %>
+      <div class="light"><%= @plant.light %></div>
       <p>
       <div class="bold">Height:</div>
       <% if @plant.height %>
-        <%= @plant.height %>"
+        <div class="height"><%= @plant.height %>"</div>
       <% end %>
       <p>
       <div class="bold">Spacing:</div>
       <% if @plant.spacing %>
-        <%= @plant.spacing %>"
+        <div class="spacing"><%= @plant.spacing %>"</div>
       <% end %>
       <p>
       <div class="bold">When to sow seed:</div>
         <% @plant.seasons.each do |s| %>
-          <%= s.season %><br>
+          <div class="seasons"><%= s.season %><br></div>
         <% end %>
       <p>
       <div class="bold">Tags:</div>

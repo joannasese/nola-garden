@@ -3,6 +3,7 @@ $(document).on('turbolinks:load', function() {
   allPlants();
   // myPlants();
   nextPlant();
+  previousPlant();
   // test();
 });
 
@@ -79,7 +80,11 @@ function nextPlant(){
       $(".plant-photo").attr("src", data["image"]);
       $(".common-name").text(data["common_name"]);
       $(".latin-name").text(data["latin_name"]);
+      $(".height").text(data["height"] + '"');
       $(".lifecycle").text(data["lifecycle"]);
+      $(".maturity").text(data["days_to_maturity"]);
+      $(".light").text(data["light"]);
+      $(".spacing").text(data["spacing"] + '"');
       $(".js-next").attr("data-id", data["id"]);
     }).fail(function(event){
       $.getJSON("/plants/1/details", function(data){
@@ -87,12 +92,20 @@ function nextPlant(){
         $(".plant-photo").attr("src", data["image"]);
         $(".common-name").text(data["common_name"]);
         $(".latin-name").text(data["latin_name"]);
+        $(".height").text(data["height"] + '"');
         $(".lifecycle").text(data["lifecycle"]);
+        $(".maturity").text(data["days_to_maturity"]);
+        $(".light").text(data["light"]);
+        $(".spacing").text(data["spacing"] + '"');
         $(".js-next").attr("data-id", data["id"]);
       })
     })
     return false;
   })
+}
+
+function previousPlant(){
+
 }
 
 function test(){
