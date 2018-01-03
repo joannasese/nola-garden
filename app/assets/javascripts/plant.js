@@ -75,7 +75,7 @@ function nextPlant(){
     $.getJSON("/plants/" + nextId + "/details", function(data){
     // $.get("/plants/" + nextId + ".json", function(data){
     // NEXT DOES NOT WORK PAST ID 2 WITH .JSON
-      console.log(nextId)
+
       $("#plant-title").text(data["variety"]);
       $(".plant-photo").attr("src", data["image"]);
       $(".common-name").text(data["common_name"]);
@@ -85,6 +85,10 @@ function nextPlant(){
       $(".maturity").text(data["days_to_maturity"]);
       $(".light").text(data["light"]);
       $(".spacing").text(data["spacing"] + '"');
+      //work out how to display seasons and tags
+      $(".seasons").text("Replacement")
+      $(".tags").text("Replacement")
+
       $(".js-next").attr("data-id", data["id"]);
       $(".js-previous").attr("data-id", data["id"]) - 1;
     }).fail(function(event){
@@ -114,7 +118,8 @@ function previousPlant(){
     $.getJSON("/plants/" + previousId + "/details", function(data){
     // $.get("/plants/" + nextId + ".json", function(data){
     // NEXT DOES NOT WORK PAST ID 2 WITH .JSON
-      console.log(previousId)
+      // console.log(previousId)
+      // console.log(data)
       $("#plant-title").text(data["variety"]);
       $(".plant-photo").attr("src", data["image"]);
       $(".common-name").text(data["common_name"]);
@@ -127,8 +132,8 @@ function previousPlant(){
       $(".js-previous").attr("data-id", data["id"]);
       $(".js-next").attr("data-id", data["id"]) + 1;
     }).fail(function(event){
-      // get length of plants array
-      $.getJSON("/plants/8/details", function(data){
+      // get length of plants array to avoid hardcoding
+      $.getJSON("/plants/" + 8 + "/details", function(data){
         $("#plant-title").text(data["variety"]);
         $(".plant-photo").attr("src", data["image"]);
         $(".common-name").text(data["common_name"]);

@@ -4,15 +4,14 @@
   <h2 id="plant-title"><%= @plant.variety %></h2>
   <% if params[:user_id] %>
     <%= link_to "Return to plants index", user_plants_path, class: "content-link" %>
-    <%= link_to " | Edit plant", edit_user_plant_path, class: "content-link" if editable %><br>
+    <%= link_to " | Edit plant", edit_user_plant_path, class: "content-link edit" if editable %><br>
     << <a href="#" class="js-previous" data-id="<%= @plant.id %>">Previous</a> |
     <a href="#" class="js-next" data-id="<%= @plant.id %>">Next >></a>
   <% else %>
     <%= link_to "Return to plants index", plants_path, class: "content-link" %>
     <%= link_to " | Edit plant", edit_plant_path, class: "content-link" if editable %><br>
-    << Previous |
+    << <a href="#" class="js-previous" data-id="<%= @plant.id %>">Previous</a> |
     <a href="#" class="js-next" data-id="<%= @plant.id %>">Next >></a>
-
   <% end %>
 </div>
 
@@ -56,20 +55,24 @@
       <% end %>
       <p>
       <div class="bold">When to sow seed:</div>
-        <% @plant.seasons.each do |s| %>
-          <div class="seasons"><%= s.season %><br></div>
-        <% end %>
+        <div class="seasons">
+          <% @plant.seasons.each do |s| %>
+            <%= s.season %><br>
+          <% end %>
+        </div>
       <p>
       <div class="bold">Tags:</div>
+      <div class="tags">
         <% if !@plant.tags.empty? %>
-        <ul>
-          <% @plant.tags.each do |tag| %>
-            <li><%= tag.name %></li>
+          <ul>
+            <% @plant.tags.each do |tag| %>
+              <li><%= tag.name %></li>
+            <% end %>
+          </ul>
+          <% else %>
+            No tags yet!
           <% end %>
-        </ul>
-        <% else %>
-          No tags yet!
-        <% end %>
+        </div>
     </div>
   </div>
 </div>
