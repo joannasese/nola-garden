@@ -86,6 +86,7 @@ function nextPlant(){
       $(".light").text(data["light"]);
       $(".spacing").text(data["spacing"] + '"');
       $(".js-next").attr("data-id", data["id"]);
+      $(".js-previous").attr("data-id", data["id"]) - 1;
     }).fail(function(event){
       $.getJSON("/plants/1/details", function(data){
         $("#plant-title").text(data["variety"]);
@@ -98,6 +99,7 @@ function nextPlant(){
         $(".light").text(data["light"]);
         $(".spacing").text(data["spacing"] + '"');
         $(".js-next").attr("data-id", data["id"]);
+        $(".js-previous").attr("data-id", data["id"]) - 1;
       })
     })
     return false;
@@ -122,9 +124,11 @@ function previousPlant(){
       $(".maturity").text(data["days_to_maturity"]);
       $(".light").text(data["light"]);
       $(".spacing").text(data["spacing"] + '"');
-      $(".js-next").attr("data-id", data["id"]);
+      $(".js-previous").attr("data-id", data["id"]);
+      $(".js-next").attr("data-id", data["id"]) + 1;
     }).fail(function(event){
-      $.getJSON("/plants/1/details", function(data){
+      // get length of plants array
+      $.getJSON("/plants/8/details", function(data){
         $("#plant-title").text(data["variety"]);
         $(".plant-photo").attr("src", data["image"]);
         $(".common-name").text(data["common_name"]);
@@ -134,7 +138,8 @@ function previousPlant(){
         $(".maturity").text(data["days_to_maturity"]);
         $(".light").text(data["light"]);
         $(".spacing").text(data["spacing"] + '"');
-        $(".js-next").attr("data-id", data["id"]);
+        $(".js-previous").attr("data-id", data["id"]);
+        $(".js-next").attr("data-id", data["id"]) + 1;
       })
     })
     return false;
