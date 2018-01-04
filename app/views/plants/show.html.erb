@@ -1,5 +1,5 @@
 <!-- PLANT SHOW PAGE /plants/:id OR /users/:id/plants/:id-->
-
+<!-- INDEX, EDIT, PREVIOUS, NEXT -->
 <div class="plant-title">
   <h2 id="plant-title"><%= @plant.variety %></h2>
   <% if params[:user_id] %>
@@ -19,6 +19,7 @@
   <div class="col-md-3">
   </div>
 
+  <!-- IMAGE -->
   <div class="col-md-3">
     <% if @plant.image.url != "/images/original/missing.png" %>
       <%= link_to image_tag(@plant.image.url, class: "plant-photo"), @plant.image.url %>
@@ -27,6 +28,7 @@
     <% end %>
   </div>
 
+  <!-- PLANT INFO -->
   <div class="col-md-3">
     <div class="plant-info">
       <div class="bold">Common name:</div>
