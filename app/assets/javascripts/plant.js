@@ -2,9 +2,9 @@ $(document).on('turbolinks:load', function() {
 // $(document).ready(function () {
   allPlants();
   // myPlants();
-  nextPlant();
+  // nextPlant();
   previousPlant();
-  // test();
+  test();
 });
 
 // class Plant {
@@ -30,7 +30,6 @@ function allPlants(){
       var url = $("a.all-plant-index").attr("href")
       $(".page-title").load(url + " .page-title")
       $(".filter").load(url + " .filter")
-
       $(".main-content").empty();
       //figure out how to sort and add link
       json.forEach(function(plant){
@@ -47,10 +46,6 @@ function allPlants(){
 function myPlants(){
   $("a.my-plant-index").on('click', function(event){
     $.get(this.href).done(function(data){
-      // $(".main-content").empty().append("hi")
-      // $(".plant-list").append("plants")
-      // $(".main-content").replaceWith(data)
-
       var url = $("a.my-plant-index").attr("href")
       $(".page-title").load(url + " .page-title")
       $(".filter").load(url + " .filter")
@@ -58,8 +53,8 @@ function myPlants(){
       $(".submit").load(url + " .submit")
       console.log("jQuery myPlants")
 
-      // $.each(data, function(index, plant){
-      //   $(".test").append(plant.common_name)
+      // $.each(data, function(index, season_ids){
+      //   $(".test").append(season_ids)
       // })
       // $(".test").load(url + " .main-content").empty().append($(".plant-list"))
     })
@@ -73,9 +68,6 @@ function nextPlant(){
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
 
     $.getJSON("/plants/" + nextId + "/details", function(data){
-    // $.get("/plants/" + nextId + ".json", function(data){
-    // NEXT DOES NOT WORK PAST ID 2 WITH .JSON
-
       $("#plant-title").text(data["variety"]);
       $(".plant-photo").attr("src", data["image"]);
       $(".common-name").text(data["common_name"]);
@@ -85,7 +77,7 @@ function nextPlant(){
       $(".maturity").text(data["days_to_maturity"]);
       $(".light").text(data["light"]);
       $(".spacing").text(data["spacing"] + '"');
-      
+
       //work out how to display seasons and tags
       $(".seasons").text("Replacement")
       $(".tags").text("Replacement")
@@ -117,10 +109,6 @@ function previousPlant(){
     var previousId = parseInt($(".js-previous").attr("data-id")) - 1;
 
     $.getJSON("/plants/" + previousId + "/details", function(data){
-    // $.get("/plants/" + nextId + ".json", function(data){
-    // NEXT DOES NOT WORK PAST ID 2 WITH .JSON
-      // console.log(previousId)
-      // console.log(data)
       $("#plant-title").text(data["variety"]);
       $(".plant-photo").attr("src", data["image"]);
       $(".common-name").text(data["common_name"]);
@@ -153,20 +141,51 @@ function previousPlant(){
 }
 
 function test(){
-  $("a.my-plant-index").on('click', function(event){
-    $.getJSON(this.href).done(function(json){
-      var url = $("a.my-plant-index").attr("href")
-      $(".page-title").load(url + " .page-title")
-      $(".filter").load(url + " .filter")
+ $(".js-next").on('click', function(event){
+   event.preventDefault();
+   var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+   var url = "/plants/" + nextId + "/details"
+   var url2 = "/plants/" + nextId + "/season-tester"
 
-      json.forEach(function(plant){
-        // $(".main-content").load(url + " .main-content").empty().append(plant.common_name)
-        $(".main-content").empty().append(plant.common_name + "<br>")
-      })
+   $.getJSON(url, function(data){
+     $("#plant-title").text(data["variety"]);
+     $(".plant-photo").attr("src", data["image"]);
+     $(".common-name").text(data["common_name"]);
+     $(".latin-name").text(data["latin_name"]);
+     $(".height").text(data["height"] + '"');
+     $(".lifecycle").text(data["lifecycle"]);
+     $(".maturity").text(data["days_to_maturity"]);
+     $(".light").text(data["light"]);
+     $(".spacing").text(data["spacing"] + '"');
 
-      $(".submit").load(url + " .submit")
+     //work out how to display seasons and tags
+     $(".tags").text("Replacement")
 
-    })
-    event.preventDefault();
-  })
+     $.getJSON(url2, function(json){
+       $(".seasons").empty()
+       json.forEach(function(season){
+         console.log(json)
+         $(".seasons").append(season.season + "<br>")
+       })
+     })
+
+     $(".js-next").attr("data-id", data["id"]);
+     $(".js-previous").attr("data-id", data["id"]) - 1;
+   }).fail(function(event){
+     $.getJSON("/plants/1/details", function(data){
+       $("#plant-title").text(data["variety"]);
+       $(".plant-photo").attr("src", data["image"]);
+       $(".common-name").text(data["common_name"]);
+       $(".latin-name").text(data["latin_name"]);
+       $(".height").text(data["height"] + '"');
+       $(".lifecycle").text(data["lifecycle"]);
+       $(".maturity").text(data["days_to_maturity"]);
+       $(".light").text(data["light"]);
+       $(".spacing").text(data["spacing"] + '"');
+       $(".js-next").attr("data-id", data["id"]);
+       $(".js-previous").attr("data-id", data["id"]) - 1;
+     })
+   })
+   return false;
+ })
 }
