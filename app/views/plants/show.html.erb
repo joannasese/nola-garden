@@ -56,11 +56,12 @@
       <p>
       <div class="bold">When to sow seed:</div>
         <div class="seasons">
-          <% @plant.seasons.each do |s| %>
-            <%= s.season %><br>
-          <% end %>
+          <ul>
+            <% @plant.seasons.each do |s| %>
+              <li><%= s.season %></li>
+            <% end %>
+          </ul>
         </div>
-        <div class="seasons-2"></div>
       <p>
       <div class="bold">Tags:</div>
       <div class="tags">

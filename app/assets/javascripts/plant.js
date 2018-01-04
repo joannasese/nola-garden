@@ -144,10 +144,11 @@ function test(){
  $(".js-next").on('click', function(event){
    event.preventDefault();
    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-   var url = "/plants/" + nextId + "/details"
-   var url2 = "/plants/" + nextId + "/season-tester"
+   var details_url = "/plants/" + nextId + "/details"
+   var seasons_url = "/plants/" + nextId + "/season-tester"
+   var tags_url = "/plants/" + nextId + "/tags"
 
-   $.getJSON(url, function(data){
+   $.getJSON(details_url, function(data){
      $("#plant-title").text(data["variety"]);
      $(".plant-photo").attr("src", data["image"]);
      $(".common-name").text(data["common_name"]);
@@ -157,18 +158,18 @@ function test(){
      $(".maturity").text(data["days_to_maturity"]);
      $(".light").text(data["light"]);
      $(".spacing").text(data["spacing"] + '"');
-
-     //work out how to display seasons and tags
-     $(".tags").text("Replacement")
-
-     $.getJSON(url2, function(json){
+     $.getJSON(seasons_url, function(json){
        $(".seasons").empty()
        json.forEach(function(season){
-         console.log(json)
-         $(".seasons").append(season.season + "<br>")
+         $(".seasons").append("<li>" + season.season + "<br>")
        })
      })
-
+     $.getJSON(tags_url, function(json){
+       $(".tags").empty()
+       json.forEach(function(tag){
+         $(".tags").append("<li>" + tag.name + "<br>")
+       })
+     })
      $(".js-next").attr("data-id", data["id"]);
      $(".js-previous").attr("data-id", data["id"]) - 1;
    }).fail(function(event){
@@ -182,6 +183,18 @@ function test(){
        $(".maturity").text(data["days_to_maturity"]);
        $(".light").text(data["light"]);
        $(".spacing").text(data["spacing"] + '"');
+       $.getJSON("/plants/1/season-tester", function(json){
+         $(".seasons").empty()
+         json.forEach(function(season){
+           $(".seasons").append("<li>" + season.season + "<br>")
+         })
+       })
+       $.getJSON("/plants/1/tags", function(json){
+         $(".tags").empty()
+         json.forEach(function(tag){
+           $(".tags").append("<li>" + tag.name + "<br>")
+         })
+       })
        $(".js-next").attr("data-id", data["id"]);
        $(".js-previous").attr("data-id", data["id"]) - 1;
      })
