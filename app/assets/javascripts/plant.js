@@ -2,9 +2,9 @@ $(document).on('turbolinks:load', function() {
 // $(document).ready(function () {
   allPlants();
   // myPlants();
-  nextPlant();
+  // nextPlant();
   previousPlant();
-  // test();
+  test();
 });
 
 // class Plant {
@@ -61,6 +61,8 @@ function myPlants(){
     event.preventDefault();
   })
 }
+
+let callback
 
 function nextPlant(){
   $(".js-next").on('click', function(event){
@@ -133,7 +135,91 @@ function previousPlant(){
     var seasons_url = "/plants/" + previousId + "/season-tester"
     var tags_url = "/plants/" + previousId + "/tags"
 
-    $.getJSON(details_url, function(data){
+    retrieveDetails(details_url, seasons_url, tags_url, "/plants/8/")
+    // $.getJSON(details_url, function(data){
+    //   $("#plant-title").text(data["variety"]);
+    //   $(".plant-photo").attr("src", data["image"]);
+    //   $(".common-name").text(data["common_name"]);
+    //   $(".latin-name").text(data["latin_name"]);
+    //   $(".height").text(data["height"] + '"');
+    //   $(".lifecycle").text(data["lifecycle"]);
+    //   $(".maturity").text(data["days_to_maturity"]);
+    //   $(".light").text(data["light"]);
+    //   $(".spacing").text(data["spacing"] + '"');
+    //   $.getJSON(seasons_url, function(json){
+    //     $(".seasons").empty()
+    //     json.forEach(function(season){
+    //       $(".seasons").append("<li>" + season.season + "<br>")
+    //     })
+    //   })
+    //   $.getJSON(tags_url, function(json){
+    //     $(".tags").empty()
+    //     json.forEach(function(tag){
+    //       $(".tags").append("<li>" + tag.name + "<br>")
+    //     })
+    //   })
+    //   $(".js-previous").attr("data-id", data["id"]);
+    //   $(".js-next").attr("data-id", data["id"]) + 1;
+    // }).fail(function(event){
+    //   // AVOID HARDCODING
+    //   $.getJSON("/plants/8/details", function(data){
+    //     $("#plant-title").text(data["variety"]);
+    //     $(".plant-photo").attr("src", data["image"]);
+    //     $(".common-name").text(data["common_name"]);
+    //     $(".latin-name").text(data["latin_name"]);
+    //     $(".height").text(data["height"] + '"');
+    //     $(".lifecycle").text(data["lifecycle"]);
+    //     $(".maturity").text(data["days_to_maturity"]);
+    //     $(".light").text(data["light"]);
+    //     $(".spacing").text(data["spacing"] + '"');
+    //     $.getJSON("/plants/8/season-tester", function(json){
+    //       $(".seasons").empty()
+    //       json.forEach(function(season){
+    //         $(".seasons").append("<li>" + season.season + "<br>")
+    //       })
+    //     })
+    //     $.getJSON("/plants/8/tags", function(json){
+    //       $(".tags").empty()
+    //       json.forEach(function(tag){
+    //         $(".tags").append("<li>" + tag.name + "<br>")
+    //       })
+    //     })
+    //     $(".js-previous").attr("data-id", data["id"]);
+    //     $(".js-next").attr("data-id", data["id"]) + 1;
+    //   })
+    // })
+    return false;
+  })
+}
+
+let retrieveDetails = (details_url, seasons_url, tags_url, fail_url) => {
+  $.getJSON(details_url, function(data){
+    $("#plant-title").text(data["variety"]);
+    $(".plant-photo").attr("src", data["image"]);
+    $(".common-name").text(data["common_name"]);
+    $(".latin-name").text(data["latin_name"]);
+    $(".height").text(data["height"] + '"');
+    $(".lifecycle").text(data["lifecycle"]);
+    $(".maturity").text(data["days_to_maturity"]);
+    $(".light").text(data["light"]);
+    $(".spacing").text(data["spacing"] + '"');
+    $.getJSON(seasons_url, function(json){
+      $(".seasons").empty()
+      json.forEach(function(season){
+        $(".seasons").append("<li>" + season.season + "<br>")
+      })
+    })
+    $.getJSON(tags_url, function(json){
+      $(".tags").empty()
+      json.forEach(function(tag){
+        $(".tags").append("<li>" + tag.name + "<br>")
+      })
+    })
+    $(".js-next").attr("data-id", data["id"]) + 1;
+    $(".js-previous").attr("data-id", data["id"]) - 1;
+  })
+  .fail(function(event){
+    $.getJSON(fail_url + "/details", function(data){
       $("#plant-title").text(data["variety"]);
       $(".plant-photo").attr("src", data["image"]);
       $(".common-name").text(data["common_name"]);
@@ -143,50 +229,21 @@ function previousPlant(){
       $(".maturity").text(data["days_to_maturity"]);
       $(".light").text(data["light"]);
       $(".spacing").text(data["spacing"] + '"');
-      $.getJSON(seasons_url, function(json){
+      $.getJSON(fail_url + "season-tester", function(json){
         $(".seasons").empty()
         json.forEach(function(season){
           $(".seasons").append("<li>" + season.season + "<br>")
         })
       })
-      $.getJSON(tags_url, function(json){
+      $.getJSON(fail_url + "tags", function(json){
         $(".tags").empty()
         json.forEach(function(tag){
           $(".tags").append("<li>" + tag.name + "<br>")
         })
       })
-      $(".js-previous").attr("data-id", data["id"]);
       $(".js-next").attr("data-id", data["id"]) + 1;
-    }).fail(function(event){
-      // AVOID HARDCODING
-      $.getJSON("/plants/8/details", function(data){
-        console.log(event)
-        $("#plant-title").text(data["variety"]);
-        $(".plant-photo").attr("src", data["image"]);
-        $(".common-name").text(data["common_name"]);
-        $(".latin-name").text(data["latin_name"]);
-        $(".height").text(data["height"] + '"');
-        $(".lifecycle").text(data["lifecycle"]);
-        $(".maturity").text(data["days_to_maturity"]);
-        $(".light").text(data["light"]);
-        $(".spacing").text(data["spacing"] + '"');
-        $.getJSON("/plants/8/season-tester", function(json){
-          $(".seasons").empty()
-          json.forEach(function(season){
-            $(".seasons").append("<li>" + season.season + "<br>")
-          })
-        })
-        $.getJSON("/plants/8/tags", function(json){
-          $(".tags").empty()
-          json.forEach(function(tag){
-            $(".tags").append("<li>" + tag.name + "<br>")
-          })
-        })
-        $(".js-previous").attr("data-id", data["id"]);
-        $(".js-next").attr("data-id", data["id"]) + 1;
-      })
+      $(".js-previous").attr("data-id", data["id"]) - 1;
     })
-    return false;
   })
 }
 
@@ -198,57 +255,59 @@ function test(){
    var seasons_url = "/plants/" + nextId + "/season-tester"
    var tags_url = "/plants/" + nextId + "/tags"
 
-   $.getJSON(details_url, function(data){
-     $("#plant-title").text(data["variety"]);
-     $(".plant-photo").attr("src", data["image"]);
-     $(".common-name").text(data["common_name"]);
-     $(".latin-name").text(data["latin_name"]);
-     $(".height").text(data["height"] + '"');
-     $(".lifecycle").text(data["lifecycle"]);
-     $(".maturity").text(data["days_to_maturity"]);
-     $(".light").text(data["light"]);
-     $(".spacing").text(data["spacing"] + '"');
-     $.getJSON(seasons_url, function(json){
-       $(".seasons").empty()
-       json.forEach(function(season){
-         $(".seasons").append("<li>" + season.season + "<br>")
-       })
-     })
-     $.getJSON(tags_url, function(json){
-       $(".tags").empty()
-       json.forEach(function(tag){
-         $(".tags").append("<li>" + tag.name + "<br>")
-       })
-     })
-     $(".js-next").attr("data-id", data["id"]);
-     $(".js-previous").attr("data-id", data["id"]) - 1;
-   }).fail(function(event){
-     $.getJSON("/plants/1/details", function(data){
-       $("#plant-title").text(data["variety"]);
-       $(".plant-photo").attr("src", data["image"]);
-       $(".common-name").text(data["common_name"]);
-       $(".latin-name").text(data["latin_name"]);
-       $(".height").text(data["height"] + '"');
-       $(".lifecycle").text(data["lifecycle"]);
-       $(".maturity").text(data["days_to_maturity"]);
-       $(".light").text(data["light"]);
-       $(".spacing").text(data["spacing"] + '"');
-       $.getJSON("/plants/1/season-tester", function(json){
-         $(".seasons").empty()
-         json.forEach(function(season){
-           $(".seasons").append("<li>" + season.season + "<br>")
-         })
-       })
-       $.getJSON("/plants/1/tags", function(json){
-         $(".tags").empty()
-         json.forEach(function(tag){
-           $(".tags").append("<li>" + tag.name + "<br>")
-         })
-       })
-       $(".js-next").attr("data-id", data["id"]);
-       $(".js-previous").attr("data-id", data["id"]) - 1;
-     })
-   })
+   retrieveDetails(details_url, seasons_url, tags_url, "/plants/1/")
+   // $.getJSON(details_url, function(data){
+   //   $("#plant-title").text(data["variety"]);
+   //   $(".plant-photo").attr("src", data["image"]);
+   //   $(".common-name").text(data["common_name"]);
+   //   $(".latin-name").text(data["latin_name"]);
+   //   $(".height").text(data["height"] + '"');
+   //   $(".lifecycle").text(data["lifecycle"]);
+   //   $(".maturity").text(data["days_to_maturity"]);
+   //   $(".light").text(data["light"]);
+   //   $(".spacing").text(data["spacing"] + '"');
+   //   $.getJSON(seasons_url, function(json){
+   //     $(".seasons").empty()
+   //     json.forEach(function(season){
+   //       $(".seasons").append("<li>" + season.season + "<br>")
+   //     })
+   //   })
+   //   $.getJSON(tags_url, function(json){
+   //     $(".tags").empty()
+   //     json.forEach(function(tag){
+   //       $(".tags").append("<li>" + tag.name + "<br>")
+   //     })
+   //   })
+   //   $(".js-next").attr("data-id", data["id"]);
+   //   $(".js-previous").attr("data-id", data["id"]) - 1;
+   // })
+   // .fail(function(event){
+   //   $.getJSON("/plants/1/details", function(data){
+   //     $("#plant-title").text(data["variety"]);
+   //     $(".plant-photo").attr("src", data["image"]);
+   //     $(".common-name").text(data["common_name"]);
+   //     $(".latin-name").text(data["latin_name"]);
+   //     $(".height").text(data["height"] + '"');
+   //     $(".lifecycle").text(data["lifecycle"]);
+   //     $(".maturity").text(data["days_to_maturity"]);
+   //     $(".light").text(data["light"]);
+   //     $(".spacing").text(data["spacing"] + '"');
+   //     $.getJSON("/plants/1/season-tester", function(json){
+   //       $(".seasons").empty()
+   //       json.forEach(function(season){
+   //         $(".seasons").append("<li>" + season.season + "<br>")
+   //       })
+   //     })
+   //     $.getJSON("/plants/1/tags", function(json){
+   //       $(".tags").empty()
+   //       json.forEach(function(tag){
+   //         $(".tags").append("<li>" + tag.name + "<br>")
+   //       })
+   //     })
+   //     $(".js-next").attr("data-id", data["id"]);
+   //     $(".js-previous").attr("data-id", data["id"]) - 1;
+   //   })
+   // })
    return false;
  })
 }
