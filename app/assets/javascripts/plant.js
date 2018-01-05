@@ -25,7 +25,7 @@ class Plant {
 }
 
 // "list of things" index resource
-function allPlants(){
+let allPlants = () => {
   $(".all-plant-index").on('click', function(event){
     $.getJSON(this.href).done(function(json){
       var url = $("a.all-plant-index").attr("href")
@@ -46,7 +46,7 @@ function allPlants(){
 }
 
 // "list of things" index resource
-function myPlants(){
+let myPlants = () => {
   $("a.my-plant-index").on('click', function(event){
     $.get(this.href).done(function(data){
       var url = $("a.my-plant-index").attr("href")
@@ -59,8 +59,9 @@ function myPlants(){
     event.preventDefault();
   })
 }
+
 // "one specific thing" show resource
-function nextPlant(){
+let nextPlant = () => {
   $(".js-next").on('click', function(event){
     event.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
@@ -73,7 +74,7 @@ function nextPlant(){
 }
 
 // "one specific thing" show resource
-function previousPlant(){
+let previousPlant = () => {
   $(".js-previous").on('click', function(event){
     event.preventDefault();
     var previousId = parseInt($(".js-previous").attr("data-id")) - 1;
