@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get '/plants/:id/seasons', to: 'plants#seasons'
   get '/plants/:id/tags', to: 'plants#tags'
   get '/users/:id/plants', to: 'plants#index'
+  get '/plants/:id', to: 'plants#show'
   get '/plants', to: 'plants#index'
 
 end

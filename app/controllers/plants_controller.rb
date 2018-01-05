@@ -42,7 +42,7 @@ class PlantsController < ApplicationController
     @plant = Plant.find_by(id: params[:id])
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @plant }
+      format.json { render json: @user }
     end
   end
 

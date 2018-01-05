@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
 // $(document).ready(function () {
   allPlants();
-  // myPlants();
+  myPlants();
   nextPlant();
   previousPlant();
   edit();
@@ -70,11 +70,8 @@ let nextPlant = () => {
     var details_url = "/plants/" + nextId + "/details"
     var seasons_url = "/plants/" + nextId + "/seasons"
     var tags_url = "/plants/" + nextId + "/tags"
-    $.getJSON(base_url, function(json){
-      $(".edit").attr("href", base_url)
-      console.log(json)
-      console.log(base_url)
-    })
+
+    edit(base_url, "/plants/1", details_url)
     retrieveDetails(details_url, seasons_url, tags_url, "/plants/1/")
     return false;
   })
@@ -85,9 +82,12 @@ let previousPlant = () => {
   $(".js-previous").on('click', function(event){
     event.preventDefault();
     var previousId = parseInt($(".js-previous").attr("data-id")) - 1;
+    var base_url = "/plants/" + previousId
     var details_url = "/plants/" + previousId + "/details"
     var seasons_url = "/plants/" + previousId + "/seasons"
     var tags_url = "/plants/" + previousId + "/tags"
+
+    edit(base_url, "/plants/8")
     retrieveDetails(details_url, seasons_url, tags_url, "/plants/8/")
     return false;
   })
@@ -123,71 +123,28 @@ let retrieveDetails = (details_url, seasons_url, tags_url, fail_url) => {
 
   $.getJSON(details_url, function(data){
     plantInfo(data, seasons_url, tags_url);
-    // $("#plant-title").text(data["variety"]);
-    // $(".plant-photo").attr("src", data["image"]);
-    // $(".common-name").text(data["common_name"]);
-    // $(".latin-name").text(data["latin_name"]);
-    // $(".height").text(data["height"] + '"');
-    // $(".lifecycle").text(data["lifecycle"]);
-    // $(".maturity").text(data["days_to_maturity"]);
-    // $(".light").text(data["light"]);
-    // $(".spacing").text(data["spacing"] + '"');
-    // $.getJSON(seasons_url, function(json){
-    //   $(".seasons").empty()
-    //   json.forEach(function(season){
-    //     $(".seasons").append("<li>" + season.season + "<br>")
-    //   })
-    // })
-    // $.getJSON(tags_url, function(json){
-    //   $(".tags").empty()
-    //   json.forEach(function(tag){
-    //     $(".tags").append("<li>" + tag.name + "<br>")
-    //   })
-    // })
-    // $(".js-next").attr("data-id", data["id"]) + 1;
-    // $(".js-previous").attr("data-id", data["id"]) - 1;
   }).fail(function(event){
     $.getJSON(fail_url + "/details", function(data){
       plantInfo(data, fail_url + "seasons", fail_url + "tags");
-      // $("#plant-title").text(data["variety"]);
-      // $(".plant-photo").attr("src", data["image"]);
-      // $(".common-name").text(data["common_name"]);
-      // $(".latin-name").text(data["latin_name"]);
-      // $(".height").text(data["height"] + '"');
-      // $(".lifecycle").text(data["lifecycle"]);
-      // $(".maturity").text(data["days_to_maturity"]);
-      // $(".light").text(data["light"]);
-      // $(".spacing").text(data["spacing"] + '"');
-      // $.getJSON(fail_url + "seasons", function(json){
-      //   $(".seasons").empty()
-      //   json.forEach(function(season){
-      //     $(".seasons").append("<li>" + season.season + "<br>")
-      //   })
-      // })
-      // $.getJSON(fail_url + "tags", function(json){
-      //   $(".tags").empty()
-      //   json.forEach(function(tag){
-      //     $(".tags").append("<li>" + tag.name + "<br>")
-      //   })
-      // })
-      // $(".js-next").attr("data-id", data["id"]) + 1;
-      // $(".js-previous").attr("data-id", data["id"]) - 1;
     })
   })
 }
 
-let edit = () => {
-  $(".edit").on('click', function(event){
-    event.preventDefault();
-    let editId = parseInt($(".edit").attr("data_id"))
-    console.log(editId)
-    alert("hey")
-    // $.getJSON(this.href).done(function(json){
-    //   json.forEach(function(data){
-    //     $(".common_name").text("hello")
-    //   })
-    // })
+let edit = (base_url, fail_url, details_url) => {
+  // goal: if editable, toggle, ideally
+  $.getJSON(details_url, function(plant){
+console.log(plant.user_id)
+    $.getJSON(base_url, function(user){
+      let userMatch = plant.user_id === user.id
+      console.log(userMatch)
+      $(".edit").toggle(userMatch)
+      $(".edit").attr("href", base_url)
+      if (base_url === "/plants/0" || base_url === "/plants/9"){
+        $(".edit").attr("href", fail_url)
+      }
+    })
   })
+
 }
 function test(){
  $(".js-next").on('click', function(event){
