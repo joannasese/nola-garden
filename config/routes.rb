@@ -23,11 +23,14 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create_with_google'
   get '/auth/failure', to: 'users#index'
 
+  # plant JSON
   get '/plants/:id/details', to: 'plants#details'
   get '/plants/:id/seasons', to: 'plants#seasons'
   get '/plants/:id/tags', to: 'plants#tags'
   get '/users/:id/plants', to: 'plants#index'
+  # user JSON
   get '/plants/:id', to: 'plants#show'
+  get '/users/:id/plants/:id', to: 'plants#show'
   get '/plants', to: 'plants#index'
 
 end

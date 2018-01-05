@@ -133,9 +133,9 @@ let retrieveDetails = (details_url, seasons_url, tags_url, fail_url) => {
 let edit = (base_url, fail_url, details_url) => {
   // goal: if editable, toggle, ideally
   $.getJSON(details_url, function(plant){
-console.log(plant.user_id)
+console.log(plant.id)
     $.getJSON(base_url, function(user){
-      let userMatch = plant.user_id === user.id
+      let userMatch = plant.user_id === user.id || plant.id === user.id
       console.log(userMatch)
       $(".edit").toggle(userMatch)
       $(".edit").attr("href", base_url)
