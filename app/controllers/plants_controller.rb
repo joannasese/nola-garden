@@ -68,7 +68,7 @@ class PlantsController < ApplicationController
     render json: plant.to_json
   end
 
-  def season_tester
+  def seasons
     plant = Plant.find(params[:id])
     seasons = plant.seasons
     render json: seasons.to_json
