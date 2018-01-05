@@ -14,7 +14,7 @@ class Plant {
     this.latin_name = plant.latin_name
     this.variety = plant.variety
     this.height = plant.height
-    this.light = plant.ight
+    this.light = plant.light
     this.lifecycle = plant.lifecycle
     this.spacing = plant.spacing
     this.days_to_maturity = plant.days_to_maturity
@@ -32,9 +32,9 @@ function allPlants(){
       $(".filter").load(url + " .filter")
       $(".main-content").empty();
       //figure out how to sort and add link
-      json.forEach(function(plant){
-        // let testPlant = new Plant(plant)
-        // console.log(testPlant)
+      json.forEach(function(data){
+        //this actually works without constructors but let's use constructors
+        let plant = new Plant(data)
         $(".main-content").append(plant.common_name + ", " + plant.variety + "<br>")
       })
       $(".submit").load(url + " .submit")
@@ -84,15 +84,16 @@ function previousPlant(){
 
 let retrieveDetails = (details_url, seasons_url, tags_url, fail_url) => {
   let plantInfo = (data, seasons_url, tags_url) => {
-    $("#plant-title").text(data["variety"]);
-    $(".plant-photo").attr("src", data["image"]);
-    $(".common-name").text(data["common_name"]);
-    $(".latin-name").text(data["latin_name"]);
-    $(".height").text(data["height"] + '"');
-    $(".lifecycle").text(data["lifecycle"]);
-    $(".maturity").text(data["days_to_maturity"]);
-    $(".light").text(data["light"]);
-    $(".spacing").text(data["spacing"] + '"');
+    let plant = new Plant(data)
+    $("#plant-title").text(plant.variety)
+    $(".plant-photo").attr("src", plant.image);
+    $(".common-name").text(plant.common_name);
+    $(".latin-name").text(plant.latin_name);
+    $(".height").text(plant.height + '"');
+    $(".lifecycle").text(plant.lifecycle);
+    $(".maturity").text(plant.days_to_maturity);
+    $(".light").text(plant.light);
+    $(".spacing").text(plant.spacing + '"');
     $.getJSON(seasons_url, function(json){
       $(".seasons").empty()
       json.forEach(function(season){
@@ -105,8 +106,8 @@ let retrieveDetails = (details_url, seasons_url, tags_url, fail_url) => {
         $(".tags").append("<li>" + tag.name + "<br>")
       })
     })
-    $(".js-next").attr("data-id", data["id"]) + 1;
-    $(".js-previous").attr("data-id", data["id"]) - 1;
+    $(".js-next").attr("data-id", plant.id) + 1;
+    $(".js-previous").attr("data-id", plant.id) - 1;
   }
 
   $.getJSON(details_url, function(data){
