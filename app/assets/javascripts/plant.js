@@ -87,7 +87,7 @@ let previousPlant = () => {
     var seasons_url = "/plants/" + previousId + "/seasons"
     var tags_url = "/plants/" + previousId + "/tags"
 
-    edit(base_url, "/plants/8")
+    edit(base_url, "/plants/8", details_url)
     retrieveDetails(details_url, seasons_url, tags_url, "/plants/8/")
     return false;
   })
@@ -131,12 +131,9 @@ let retrieveDetails = (details_url, seasons_url, tags_url, fail_url) => {
 }
 
 let edit = (base_url, fail_url, details_url) => {
-  // goal: if editable, toggle, ideally
   $.getJSON(details_url, function(plant){
-console.log(plant.id)
     $.getJSON(base_url, function(user){
       let userMatch = plant.user_id === user.id || plant.id === user.id
-      console.log(userMatch)
       $(".edit").toggle(userMatch)
       $(".edit").attr("href", base_url)
       if (base_url === "/plants/0" || base_url === "/plants/9"){
