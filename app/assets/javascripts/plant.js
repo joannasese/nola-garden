@@ -24,6 +24,7 @@ class Plant {
   }
 }
 
+// "list of things" index resource
 function allPlants(){
   $(".all-plant-index").on('click', function(event){
     $.getJSON(this.href).done(function(json){
@@ -44,6 +45,7 @@ function allPlants(){
   })
 }
 
+// "list of things" index resource
 function myPlants(){
   $("a.my-plant-index").on('click', function(event){
     $.get(this.href).done(function(data){
@@ -57,7 +59,7 @@ function myPlants(){
     event.preventDefault();
   })
 }
-
+// "one specific thing" show resource
 function nextPlant(){
   $(".js-next").on('click', function(event){
     event.preventDefault();
@@ -70,6 +72,7 @@ function nextPlant(){
   })
 }
 
+// "one specific thing" show resource
 function previousPlant(){
   $(".js-previous").on('click', function(event){
     event.preventDefault();
