@@ -9,7 +9,7 @@
     <a href="#" class="js-next content-link" data-id="<%= @plant.id %>">Next >></a>
   <% else %>
     <%= link_to "Return to plants index", plants_path, class: "content-link" %>
-    <%= link_to " | Edit plant", edit_plant_path, class: "content-link" if editable %><br>
+    <%= link_to " | Edit plant", edit_plant_path, class: "content-link edit" if editable %><br>
     << <a href="#" class="js-previous content-link" data-id="<%= @plant.id %>">Previous</a> |
     <a href="#" class="js-next content-link" data-id="<%= @plant.id %>">Next >></a>
   <% end %>

@@ -4,6 +4,7 @@ $(document).on('turbolinks:load', function() {
   // myPlants();
   nextPlant();
   previousPlant();
+  edit();
   // test();
 });
 
@@ -65,9 +66,15 @@ let nextPlant = () => {
   $(".js-next").on('click', function(event){
     event.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    var base_url = "/plants/" + nextId
     var details_url = "/plants/" + nextId + "/details"
     var seasons_url = "/plants/" + nextId + "/seasons"
     var tags_url = "/plants/" + nextId + "/tags"
+    $.getJSON(base_url, function(json){
+      $(".edit").attr("href", base_url)
+      console.log(json)
+      console.log(base_url)
+    })
     retrieveDetails(details_url, seasons_url, tags_url, "/plants/1/")
     return false;
   })
@@ -169,6 +176,19 @@ let retrieveDetails = (details_url, seasons_url, tags_url, fail_url) => {
   })
 }
 
+let edit = () => {
+  $(".edit").on('click', function(event){
+    event.preventDefault();
+    let editId = parseInt($(".edit").attr("data_id"))
+    console.log(editId)
+    alert("hey")
+    // $.getJSON(this.href).done(function(json){
+    //   json.forEach(function(data){
+    //     $(".common_name").text("hello")
+    //   })
+    // })
+  })
+}
 function test(){
  $(".js-next").on('click', function(event){
    event.preventDefault();
