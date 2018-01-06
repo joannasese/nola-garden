@@ -5,6 +5,7 @@ $(document).on('turbolinks:load', function() {
   nextPlant();
   previousPlant();
   edit();
+  addTag();
   // test();
 });
 
@@ -23,6 +24,10 @@ class Plant {
     this.season_ids = plant.season_ids
     this.tag_ids = plant.tag_ids
   }
+}
+
+Plant.prototype.tags = () => {
+  console.log(this.season_ids)
 }
 
 // "list of things" index resource
@@ -166,69 +171,9 @@ let edit = (base_url, fail_url, details_url) => {
       })
     })
   })
-
 }
-function test(){
- $(".js-next").on('click', function(event){
-   event.preventDefault();
-   var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-   var details_url = "/plants/" + nextId + "/details"
-   var seasons_url = "/plants/" + nextId + "/seasons"
-   var tags_url = "/plants/" + nextId + "/tags"
 
-   retrieveDetails(details_url, seasons_url, tags_url, "/plants/1/")
-   // $.getJSON(details_url, function(data){
-   //   $("#plant-title").text(data["variety"]);
-   //   $(".plant-photo").attr("src", data["image"]);
-   //   $(".common-name").text(data["common_name"]);
-   //   $(".latin-name").text(data["latin_name"]);
-   //   $(".height").text(data["height"] + '"');
-   //   $(".lifecycle").text(data["lifecycle"]);
-   //   $(".maturity").text(data["days_to_maturity"]);
-   //   $(".light").text(data["light"]);
-   //   $(".spacing").text(data["spacing"] + '"');
-   //   $.getJSON(seasons_url, function(json){
-   //     $(".seasons").empty()
-   //     json.forEach(function(season){
-   //       $(".seasons").append("<li>" + season.season + "<br>")
-   //     })
-   //   })
-   //   $.getJSON(tags_url, function(json){
-   //     $(".tags").empty()
-   //     json.forEach(function(tag){
-   //       $(".tags").append("<li>" + tag.name + "<br>")
-   //     })
-   //   })
-   //   $(".js-next").attr("data-id", data["id"]);
-   //   $(".js-previous").attr("data-id", data["id"]) - 1;
-   // })
-   // .fail(function(event){
-   //   $.getJSON("/plants/1/details", function(data){
-   //     $("#plant-title").text(data["variety"]);
-   //     $(".plant-photo").attr("src", data["image"]);
-   //     $(".common-name").text(data["common_name"]);
-   //     $(".latin-name").text(data["latin_name"]);
-   //     $(".height").text(data["height"] + '"');
-   //     $(".lifecycle").text(data["lifecycle"]);
-   //     $(".maturity").text(data["days_to_maturity"]);
-   //     $(".light").text(data["light"]);
-   //     $(".spacing").text(data["spacing"] + '"');
-   //     $.getJSON("/plants/1/seasons", function(json){
-   //       $(".seasons").empty()
-   //       json.forEach(function(season){
-   //         $(".seasons").append("<li>" + season.season + "<br>")
-   //       })
-   //     })
-   //     $.getJSON("/plants/1/tags", function(json){
-   //       $(".tags").empty()
-   //       json.forEach(function(tag){
-   //         $(".tags").append("<li>" + tag.name + "<br>")
-   //       })
-   //     })
-   //     $(".js-next").attr("data-id", data["id"]);
-   //     $(".js-previous").attr("data-id", data["id"]) - 1;
-   //   })
-   // })
-   return false;
- })
+let addTag = () => {
+  $(".tag-list").append("<li>" + "nonsense" + "</li>")
+  let plant = new Plant()
 }

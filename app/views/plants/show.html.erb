@@ -69,14 +69,24 @@
       <div class="tags">
         <% if !@plant.tags.empty? %>
           <ul>
-            <% @plant.tags.each do |tag| %>
-              <li><%= tag.name %></li>
-            <% end %>
+            <div class="tag-list">
+              <% @plant.tags.each do |tag| %>
+                <li><%= tag.name %></li>
+              <% end %>
+            </div>
           </ul>
-          <% else %>
-            No tags yet!
+        <% else %>
+          No tags yet!
+        <% end %>
+      </div>
+      <div id="new-form">
+        <%= form_for @plant, html: { multipart: true } do |f| %>
+          <%= f.fields_for :tags, @plant.tags.build do |tags_fields| %>
+            <%= tags_fields.text_field :name %><br>
           <% end %>
-        </div>
+        <% end %>
+      </div>-
+      <button id='button'>Add another tag</button>
     </div>
   </div>
 </div>
