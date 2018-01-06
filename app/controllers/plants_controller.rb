@@ -25,7 +25,6 @@ class PlantsController < ApplicationController
   def new
     @plant = Plant.new
     @user = current_user
-    render :plain => "<h1>hello</h1>", :layout => false
   end
 
   def create
@@ -83,6 +82,11 @@ class PlantsController < ApplicationController
     plant = Plant.find(params[:id])
     tags = plant.tags
     render json: tags.to_json
+  end
+
+  def addTags
+    plant = Plant.new
+    render json: plant.to_json, layout: false
   end
 
   private

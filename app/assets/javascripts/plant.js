@@ -175,13 +175,30 @@ let edit = (base_url, fail_url, details_url) => {
 
 let addTag = () => {
   $(".tag-list").append("<li>" + "nonsense" + "</li>")
-  $("#button").on("click", function(event){
+  $("form").on("submit", function(event){
     event.preventDefault();
-    let $button = $(this);
-    let url = $(this).data("url")
-    $.get(url, function(response){
-      console.log(response)
-      $button.before(response)
+    alert("wwowoww")
+    let $form = $(this);
+    let action = $form.attr("action");
+    console.log(action)
+    let params = $form.serialize();
+    $.ajax({
+      url: action,
+      data: params,
+      dataType: "json",
+      method: "POST"
+    })
+    .success(function(json){
+      console.log(json)
+      html = " "
+      html += "<li>" + json
     })
   })
+  // $(".button").on("click", function(event){
+  //   event.preventDefault();
+  //   console.log("woowwww")
+  //   var $form = $(this)
+  //   console.log($form)
+  //   var action = $form.attr("action")
+  // })
 }

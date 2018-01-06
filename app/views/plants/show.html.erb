@@ -84,9 +84,9 @@
           <%= f.fields_for :tags, @plant.tags.build do |tags_fields| %>
             <%= tags_fields.text_field :name %><br>
           <% end %>
+          <%= f.submit class: "button"%>
         <% end %>
-      </div>-
-      <button id='button' data-url="/plant/tags">Add another tag</button>
+      </div>
     </div>
   </div>
 </div>
