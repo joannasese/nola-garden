@@ -27,13 +27,14 @@ class Plant {
 
 // "list of things" index resource
 let allPlants = () => {
-  $(".all-plant-index").on('click', function(event){
+  $("a.all-plant-index").on('click', function(event){
+    // to access index from plant show page
+    $.getJSON(this.url).done(function(json){
+      let url = $("a.all-plant-index").attr("href")
+      $("#main-content").load(url + " .all")
+    })
     $.getJSON(this.href).done(function(json){
-      if(this.url){
-        let url = this.url
-        $("#main-content").load(url + " #main-content");
-      }
-      var url = $("a.all-plant-index").attr("href")
+      let url = $("a.all-plant-index").attr("href")
       $(".page-title").load(url + " .page-title")
       $(".filter").load(url + " .filter")
       $(".main-content").empty();
@@ -53,6 +54,10 @@ let allPlants = () => {
 // "list of things" index resource
 let myPlants = () => {
   $("a.my-plant-index").on('click', function(event){
+    $.getJSON(this.url).done(function(json){
+      let url = $("a.my-plant-index").attr("href")
+      $("#main-content").load(url + " .all")
+    })
     $.get(this.href).done(function(data){
       var url = $("a.my-plant-index").attr("href")
       $(".page-title").load(url + " .page-title")
