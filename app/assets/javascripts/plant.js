@@ -138,11 +138,16 @@ let edit = (base_url, fail_url, details_url) => {
       $(".edit").attr("href", base_url).on("click", function(){
         window.location.replace(base_url + "/edit")
       })
-      if (base_url === "/plants/0" || base_url === "/plants/9"){
-        $(".edit").attr("href", fail_url)
+    })
+  }).fail(function(event){
+    let url = fail_url + "/details"
+    $.getJSON(url, function(plant){
+      $.getJSON(base_url, function(user){
         let userMatch = plant.user_id === user.id || plant.id === user.id
         $(".edit").toggle(userMatch)
-      }
+        $(".edit").attr("href", fail_url)
+        console.log(plant)
+      })
     })
   })
 
