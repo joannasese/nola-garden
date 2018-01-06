@@ -151,12 +151,9 @@ let edit = (base_url, fail_url, details_url) => {
   $.getJSON(details_url, function(plant){
     $.getJSON(base_url, function(user){
       let userMatch = plant.user_id === user.id || plant.id === user.id
-      $("a.edit").toggle(userMatch)
-      $("a.edit").attr("href", base_url)
-      // .on("click", function(){
-        console.log(plant)
-        // window.location.replace(base_url + "/edit")
-      // })
+      $("a.edit").toggle(userMatch).attr("href", base_url).on("click", function(){
+        window.location.replace(base_url + "/edit")
+      })
     })
   }).fail(function(event){
     let url = fail_url + "/details"
