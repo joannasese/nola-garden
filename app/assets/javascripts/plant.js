@@ -29,11 +29,15 @@ class Plant {
 let allPlants = () => {
   $("a.all-plant-index").on('click', function(event){
     // to access index from plant show page
-    $.getJSON(this.url).done(function(json){
-      let url = $("a.all-plant-index").attr("href")
-      $("#main-content").load(url + " .all")
-    })
+    // $.getJSON(this.url).done(function(json){
+    //   let url = $("a.all-plant-index").attr("href")
+    //   $("#main-content").load(url + " .all")
+    // })
     $.getJSON(this.href).done(function(json){
+      if(!this.href){
+        let url = $("a.all-plant-index").attr("href")
+        $("#main-content").load(url + " .all")
+      }
       let url = $("a.all-plant-index").attr("href")
       $(".page-title").load(url + " .page-title")
       $(".filter").load(url + " .filter")
@@ -54,11 +58,15 @@ let allPlants = () => {
 // "list of things" index resource
 let myPlants = () => {
   $("a.my-plant-index").on('click', function(event){
-    $.getJSON(this.url).done(function(json){
-      let url = $("a.my-plant-index").attr("href")
-      $("#main-content").load(url + " .all")
-    })
+    // $.getJSON(this.url).done(function(json){
+    //   let url = $("a.my-plant-index").attr("href")
+    //   $("#main-content").load(url + " .all")
+    // })
     $.get(this.href).done(function(data){
+      if(!this.href){
+        let url = $("a.my-plant-index").attr("href")
+        $("#main-content").load(url + " .all")
+      }
       var url = $("a.my-plant-index").attr("href")
       $(".page-title").load(url + " .page-title")
       $(".filter").load(url + " .filter")
@@ -141,6 +149,7 @@ let retrieveDetails = (details_url, seasons_url, tags_url, fail_url) => {
 
 let edit = (base_url, fail_url, details_url) => {
   $.getJSON(details_url, function(plant){
+    console.log(plant)
     $.getJSON(base_url, function(user){
       let userMatch = plant.user_id === user.id || plant.id === user.id
       $("a.edit").toggle(userMatch)
