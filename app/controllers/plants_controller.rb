@@ -25,6 +25,7 @@ class PlantsController < ApplicationController
   def new
     @plant = Plant.new
     @user = current_user
+    render :plain => "<h1>hello</h1>", :layout => false
   end
 
   def create

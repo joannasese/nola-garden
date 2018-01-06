@@ -33,5 +33,6 @@ Rails.application.routes.draw do
   # get '/users/:id/plants/:id', to: 'plants#show'
   # get '/users/:id/plants/:id/edit', to: 'plants#edit'
   get '/plants', to: 'plants#index'
+  get '/plant/tags', to: 'plants#new'
 
 end

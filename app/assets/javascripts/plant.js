@@ -175,5 +175,13 @@ let edit = (base_url, fail_url, details_url) => {
 
 let addTag = () => {
   $(".tag-list").append("<li>" + "nonsense" + "</li>")
-  let plant = new Plant()
+  $("#button").on("click", function(event){
+    event.preventDefault();
+    let $button = $(this);
+    let url = $(this).data("url")
+    $.get(url, function(response){
+      console.log(response)
+      $button.before(response)
+    })
+  })
 }
