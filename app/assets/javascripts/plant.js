@@ -62,7 +62,7 @@ let myPlants = () => {
     //   let url = $("a.my-plant-index").attr("href")
     //   $("#main-content").load(url + " .all")
     // })
-    $.get(this.href).done(function(data){
+    $.getJSON(this.href).done(function(data){
       if(!this.href){
         let url = $("a.my-plant-index").attr("href")
         $("#main-content").load(url + " .all")
@@ -149,13 +149,14 @@ let retrieveDetails = (details_url, seasons_url, tags_url, fail_url) => {
 
 let edit = (base_url, fail_url, details_url) => {
   $.getJSON(details_url, function(plant){
-    console.log(plant)
     $.getJSON(base_url, function(user){
       let userMatch = plant.user_id === user.id || plant.id === user.id
       $("a.edit").toggle(userMatch)
-      $("a.edit").attr("href", base_url).on("click", function(){
-        window.location.replace(base_url + "/edit")
-      })
+      $("a.edit").attr("href", base_url)
+      // .on("click", function(){
+        console.log(plant)
+        // window.location.replace(base_url + "/edit")
+      // })
     })
   }).fail(function(event){
     let url = fail_url + "/details"

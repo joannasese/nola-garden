@@ -66,6 +66,10 @@ class PlantsController < ApplicationController
     # render plain: plant.common_name
     # render json: PlantSerializer.serialize(plant)
     render json: plant.to_json
+    # respond_to do |format|
+    #   format.html { render :details }
+    #   format.json { render json: plant }
+    # end
   end
 
   def seasons
