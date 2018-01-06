@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get '/users/:id/plants', to: 'plants#index'
   # user JSON
   get '/plants/:id', to: 'plants#show'
-  get '/users/:id/plants/:id', to: 'plants#show'
+  # get '/users/:id/plants/:id', to: 'plants#show'
   get '/plants', to: 'plants#index'
 
 end

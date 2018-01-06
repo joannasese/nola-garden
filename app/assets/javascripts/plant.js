@@ -29,6 +29,10 @@ class Plant {
 let allPlants = () => {
   $(".all-plant-index").on('click', function(event){
     $.getJSON(this.href).done(function(json){
+      if(this.url){
+        let url = this.url
+        $("#main-content").load(url + " #main-content");
+      }
       var url = $("a.all-plant-index").attr("href")
       $(".page-title").load(url + " .page-title")
       $(".filter").load(url + " .filter")
@@ -134,8 +138,8 @@ let edit = (base_url, fail_url, details_url) => {
   $.getJSON(details_url, function(plant){
     $.getJSON(base_url, function(user){
       let userMatch = plant.user_id === user.id || plant.id === user.id
-      $(".edit").toggle(userMatch)
-      $(".edit").attr("href", base_url).on("click", function(){
+      $("a.edit").toggle(userMatch)
+      $("a.edit").attr("href", base_url).on("click", function(){
         window.location.replace(base_url + "/edit")
       })
     })
@@ -144,9 +148,9 @@ let edit = (base_url, fail_url, details_url) => {
     $.getJSON(url, function(plant){
       $.getJSON(base_url, function(user){
         let userMatch = plant.user_id === user.id || plant.id === user.id
-        $(".edit").toggle(userMatch)
-        $(".edit").attr("href", fail_url)
-        console.log(plant)
+        $("a.edit").toggle(userMatch)
+        $("a.edit").attr("href", fail_url)
+        console.log(userMatch)
       })
     })
   })
