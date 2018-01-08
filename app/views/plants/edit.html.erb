@@ -4,5 +4,6 @@
 <% else %>
   <%= link_to "Return to plants index", plants_path, class: "content-link" %> | <%= link_to "Go back", plant_path(@plant), class: "content-link" %>
 <% end %>
-
-<%= render "form", plant: @plant %>
+<div class="main-content">
+  <%= render "form", plant: @plant %>
+</div>

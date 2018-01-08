@@ -28,9 +28,26 @@ class Plant {
 
 Plant.prototype.info = function() {
   let postInfo = " "
-  postInfo += `<b>Plant Variety:</b> ${this.variety}`
+  postInfo += `<p><b>Common name:</b> ${this.common_name}</p>`
+  postInfo += `<p><b>Latin name:</b> ${this.latin_name}</p>`
+  postInfo += `<p><b>Lifecycle:</b> ${this.lifecycle}</p>`
+  if (this.days_to_maturity !== null){
+  postInfo += `<p><b>Days to maturity:</b> ${this.days_to_maturity}</p>`
+  } else {
+    postInfo += `<p><b>Days to maturity:</b>`
+  }
+  postInfo += `<p><b>Light requirements:</b> ${this.light}</p>`
+  if (this.height !== null){
+  postInfo += `<p><b>Height:</b> ${this.height}"</p>`
+  } else {
+    postInfo += `<p><b>Height:</b>`
+  }
+  if (this.spacing !== null){
+  postInfo += `<p><b>Spacing:</b> ${this.spacing}"</p>`
+  } else {
+    postInfo += `<p><b>Spacing:</b>`
+  }
   return postInfo
-
 }
 
 // "list of things" index resource
@@ -189,29 +206,17 @@ let updatePlant = () => {
       success: function(response){
         let plant = new Plant (response)
         let url = action
-        console.log(plant.info())
         $("#plant-title").replaceWith(plant.variety + "<p>")
-        $("#test").append(plant.info())
-        $(".common-name").replaceWith(plant.common_name + "<p>")
+        $("#form").detach()
+        $(".main-content").prepend(plant.info())
+        // $(".common-name").replaceWith(plant.common_name + "<p>")
         $(".plant-photo").load(url + " .plant-photo")
         $(".image-upload").detach()
-        $(".latin-name").replaceWith(plant.latin_name)
-        $(".variety").replaceWith(plant.variety)
-        $(".height").replaceWith(plant.height)
-        $(".light").replaceWith(plant.light)
-        $(".lifecycle").replaceWith(plant.lifecycle)
-        $(".spacing").replaceWith(plant.spacing)
         $(".seasons").load(url + " .seasons")
         $(".season-row").detach()
-        $(".maturity").replaceWith(plant.maturity)
         $(".tags").load(url + " .tags")
         $(".tag-row").detach()
         $(".submit").detach()
-
-
-
-        // $("form.tag-form").trigger("reset")
-        // link to last plant in array
       },
       error: function(response){
         alert("Please complete required fields.")
