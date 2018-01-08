@@ -12,7 +12,7 @@
 <!-- IMAGE UPLOADER -->
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <p class="bold">Upload image:<br></p>
+      <p class="bold image-upload">Upload image:<br></p>
       <div class="plant-photo">
         <%= f.file_field :image %><br>
       </div>
@@ -86,16 +86,14 @@
       <div class="seasons"></div>
 
         <%= f.collection_check_boxes(:season_ids, Season.all, :id, :season) do |b| %>
-        <div class="row">
+        <div class="row season-row">
           <%= b.label(class: "check_box") do %>
-          <div class="season-checkbox">
             <div class="col-xs-4">
               <%= b.check_box(class: "check_box") %>
             </div>
             <div class="col-xs-6">
               <%= b.object.season %>
             </div>
-          </div>
           <% end %>
         </div>
       <% end %>
@@ -118,9 +116,9 @@
     <div class="col-md-4 col-md-offset-4">
 
       <p class="bold">Tags:<br>
+      <div class="tags"></div>
       <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
-        <div class="row">
-        <div class="tags">
+        <div class="row tag-row">
           <%= b.label(class: "check_box") do %>
             <div class="col-xs-4">
               <%= b.check_box(class: "check_box") %>
@@ -130,18 +128,19 @@
             </div>
           <% end %>
         </div>
-        </div>
       <% end %>
 
-      <p>New tag:
-      <%= f.fields_for :tags, plant.tags.build do |tags_fields| %>
-        <%= tags_fields.text_field :name %><br>
-      <% end %>
-     </div>
-   </div>
+      <div class="tag-row"
+        <p>New tag:
+        <%= f.fields_for :tags, plant.tags.build do |tags_fields| %>
+          <%= tags_fields.text_field :name %><br>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
 <!-- SUBMIT -->
- <div class="row">
+ <div class="row submit">
    <%= f.submit class: 'btn' %>
  </div>
 <% end %>

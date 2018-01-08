@@ -188,9 +188,10 @@ let updatePlant = () => {
         let plant = new Plant (response)
         let url = action
         console.log(plant)
-        $("#plant-title").replaceWith(plant.variety)
-        $(".common-name").replaceWith(plant.common_name)
-        $(".plant-photo").empty().html($("<img>").attr("src", plant.image.url)); //not working yet
+        $("#plant-title").replaceWith(plant.variety + "<p>")
+        $(".common-name").replaceWith(plant.common_name + "<p>")
+        $(".plant-photo").load(url + " .plant-photo")
+        $(".image-upload").detach()
         $(".latin-name").replaceWith(plant.latin_name)
         $(".variety").replaceWith(plant.variety)
         $(".height").replaceWith(plant.height)
@@ -198,8 +199,11 @@ let updatePlant = () => {
         $(".lifecycle").replaceWith(plant.lifecycle)
         $(".spacing").replaceWith(plant.spacing)
         $(".seasons").load(url + " .seasons")
-        $(".season-checkbox").detach();
+        $(".season-row").detach()
         $(".maturity").replaceWith(plant.maturity)
+        $(".tags").load(url + " .tags")
+        $(".tag-row").detach()
+        $(".submit").detach()
 
 
 
