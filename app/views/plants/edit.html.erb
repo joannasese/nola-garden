@@ -1,10 +1,8 @@
-<div class="plant-title">
-  <h3 id="plant-title"><%= @plant.variety %></h3>
-  <% if params[:user_id] %>
-    <%= link_to "Return to plants index", user_plants_path, class: "content-link" %> | <%= link_to "Go back", user_plant_path(current_user, @plant), class: "content-link" %>
-  <% else %>
-    <%= link_to "Return to plants index", plants_path, class: "content-link" %> | <%= link_to "Go back", plant_path(@plant), class: "content-link" %>
-  <% end %>
-</div>
+<h3 id="plant-title"><%= @plant.variety %></h3>
+<% if params[:user_id] %>
+  <%= link_to "Return to plants index", user_plants_path, class: "content-link" %> | <%= link_to "Go back", user_plant_path(current_user, @plant), class: "content-link" %>
+<% else %>
+  <%= link_to "Return to plants index", plants_path, class: "content-link" %> | <%= link_to "Go back", plant_path(@plant), class: "content-link" %>
+<% end %>
 
 <%= render "form", plant: @plant %>

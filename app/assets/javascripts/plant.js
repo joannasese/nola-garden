@@ -26,8 +26,10 @@ class Plant {
   }
 }
 
-Plant.prototype.tags = () => {
-  console.log(this.tag_ids)
+Plant.prototype.info = function() {
+  let postInfo = " "
+  postInfo += `<b>Plant Variety:</b> ${this.variety}`
+  return postInfo
 
 }
 
@@ -177,7 +179,7 @@ let updatePlant = () => {
     let action = $form.attr("action");
     // action is /plants/:id
     let params = $form.serialize();
-    $("form").trigger("reset")
+    // $("form").trigger("reset")
 
     $.ajax({
       url: action,
@@ -187,8 +189,9 @@ let updatePlant = () => {
       success: function(response){
         let plant = new Plant (response)
         let url = action
-        console.log(plant)
+        console.log(plant.info())
         $("#plant-title").replaceWith(plant.variety + "<p>")
+        $("#test").append(plant.info())
         $(".common-name").replaceWith(plant.common_name + "<p>")
         $(".plant-photo").load(url + " .plant-photo")
         $(".image-upload").detach()
@@ -207,7 +210,7 @@ let updatePlant = () => {
 
 
 
-        $("form.tag-form").trigger("reset")
+        // $("form.tag-form").trigger("reset")
         // link to last plant in array
       },
       error: function(response){
