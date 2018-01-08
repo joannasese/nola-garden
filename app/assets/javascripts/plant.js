@@ -186,12 +186,23 @@ let updatePlant = () => {
       method: "POST",
       success: function(response){
         let plant = new Plant (response)
-        console.log(response)
-        $("#plant-title").empty().append(plant.variety)
-        $(".common-name").empty().append(plant.common_name)
+        let url = action
+        console.log(plant)
+        $("#plant-title").replaceWith(plant.variety)
+        $(".common-name").replaceWith(plant.common_name)
         $(".plant-photo").empty().html($("<img>").attr("src", plant.image.url)); //not working yet
-        $(".latin-name").empty().append(plant.latin_name)
+        $(".latin-name").replaceWith(plant.latin_name)
         $(".variety").replaceWith(plant.variety)
+        $(".height").replaceWith(plant.height)
+        $(".light").replaceWith(plant.light)
+        $(".lifecycle").replaceWith(plant.lifecycle)
+        $(".spacing").replaceWith(plant.spacing)
+        $(".seasons").load(url + " .seasons")
+        $(".season-checkbox").detach();
+        $(".maturity").replaceWith(plant.maturity)
+
+
+
         $("form.tag-form").trigger("reset")
         // link to last plant in array
       },
