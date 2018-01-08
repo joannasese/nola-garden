@@ -194,9 +194,7 @@ let updatePlant = () => {
     event.preventDefault();
     let $form = $(this);
     let action = $form.attr("action");
-    // action is /plants/:id
     let params = $form.serialize();
-    // $("form").trigger("reset")
 
     $.ajax({
       url: action,
@@ -205,16 +203,14 @@ let updatePlant = () => {
       method: "POST",
       success: function(response){
         let plant = new Plant (response)
-        let url = action
         $("#plant-title").replaceWith(plant.variety + "<p>")
-        $("#form").detach()
-        $(".main-content").prepend(plant.info())
-        // $(".common-name").replaceWith(plant.common_name + "<p>")
-        $(".plant-photo").load(url + " .plant-photo")
+        $(".plant-photo").load(action + " .plant-photo")
         $(".image-upload").detach()
-        $(".seasons").load(url + " .seasons")
+        $("#form").detach()
+        $("#updatePlant").append(plant.info())
+        $(".seasons").load(action + " .seasons")
         $(".season-row").detach()
-        $(".tags").load(url + " .tags")
+        $(".tags").load(action + " .tags")
         $(".tag-row").detach()
         $(".submit").detach()
       },
