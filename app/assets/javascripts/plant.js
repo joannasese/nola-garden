@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function() {
   nextPlant();
   previousPlant();
   edit();
-  addTag();
+  updatePlant();
   // test();
 });
 
@@ -27,17 +27,14 @@ class Plant {
 }
 
 Plant.prototype.tags = () => {
-  console.log(this.season_ids)
+  console.log(this.tag_ids)
+
 }
 
 // "list of things" index resource
 let allPlants = () => {
   $("a.all-plant-index").on('click', function(event){
     // to access index from plant show page
-    // $.getJSON(this.url).done(function(json){
-    //   let url = $("a.all-plant-index").attr("href")
-    //   $("#main-content").load(url + " .all")
-    // })
     $.getJSON(this.href).done(function(json){
       if(!this.href){
         let url = $("a.all-plant-index").attr("href")
@@ -173,32 +170,35 @@ let edit = (base_url, fail_url, details_url) => {
   })
 }
 
-let addTag = () => {
-  $(".tag-list").append("<li>" + "nonsense" + "</li>")
+let updatePlant = () => {
   $("form").on("submit", function(event){
     event.preventDefault();
-    alert("wwowoww")
     let $form = $(this);
     let action = $form.attr("action");
-    console.log(action)
+    // action is /plants/:id
     let params = $form.serialize();
+    $("form").trigger("reset")
+
     $.ajax({
       url: action,
       data: params,
       dataType: "json",
-      method: "POST"
-    })
-    .success(function(json){
-      console.log(json)
-      html = " "
-      html += "<li>" + json
+      method: "POST",
+      success: function(response){
+        let plant = new Plant (response)
+        console.log(response)
+        $("#plant-title").empty().append(plant.variety)
+        $(".common-name").empty().append(plant.common_name)
+        $(".plant-photo").empty().html($("<img>").attr("src", plant.image.url)); //not working yet
+        $(".latin-name").empty().append(plant.latin_name)
+        $(".variety").replaceWith(plant.variety)
+        $("form.tag-form").trigger("reset")
+        // link to last plant in array
+      },
+      error: function(response){
+        alert("Please complete required fields.")
+        location.reload();
+      }
     })
   })
-  // $(".button").on("click", function(event){
-  //   event.preventDefault();
-  //   console.log("woowwww")
-  //   var $form = $(this)
-  //   console.log($form)
-  //   var action = $form.attr("action")
-  // })
 }

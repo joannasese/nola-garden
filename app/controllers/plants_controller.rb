@@ -31,7 +31,11 @@ class PlantsController < ApplicationController
     @plant = Plant.new(plant_params)
     @plant.user_id = current_user.id
     if @plant.save
-      redirect_to user_plant_path(current_user, @plant)
+      # redirect_to user_plant_path(current_user, @plant)
+      respond_to do |f|
+        f.html {redirect_to user_plant_path(current_user, @plant)}
+        f.json {render :json => @plant}
+      end
     else
       render :new
     end
@@ -54,7 +58,11 @@ class PlantsController < ApplicationController
   def update
     @plant = Plant.find_by(id: params[:id])
     if @plant.update_attributes(plant_params)
-      redirect_to plant_path(@plant)
+      # redirect_to plant_path(@plant)
+      respond_to do |f|
+        f.html {redirect_to plant_path(@plant)}
+        f.json {render :json => @plant}
+      end
     else
       render :edit
     end
@@ -84,10 +92,10 @@ class PlantsController < ApplicationController
     render json: tags.to_json
   end
 
-  def addTags
-    plant = Plant.new
-    render json: plant.to_json, layout: false
-  end
+  # def addTags
+  #   plant = Plant.new
+  #   render json: plant.to_json, layout: false
+  # end
 
   private
 
